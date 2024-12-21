@@ -11,17 +11,19 @@ namespace Promptach
         public static async Task<string> Parent()
         {
             string str = await GitParent();
-            using StreamReader stream = new(GetEnvironmentVariable("HOME") + "/.config/pathAliases.csv");
-            SmallestCSVParser parser = new(stream);
-            while (true)
-            {
-                List<string>? columns = parser.ReadNextRow();
-                if (columns == null)
+            try {
+                using StreamReader stream = new(GetEnvironmentVariable("HOME") + "/.config/pathAliases.csv");
+                SmallestCSVParser parser = new(stream);
+                while (true)
                 {
-                    break;
+                    List<string>? columns = parser.ReadNextRow();
+                    if (columns == null)
+                    {
+                        break;
+                    }
+                    str = str.Replace(columns[0], columns[1]);
                 }
-                str = str.Replace(columns[0], columns[1]);
-            }
+            } catch (FileNotFoundException) {}
             return str;
         }
     }
