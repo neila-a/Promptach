@@ -1,4 +1,3 @@
-using CliWrap;
 using CliWrap.Buffered;
 using static CliWrap.Cli;
 using System.Threading.Tasks;
@@ -13,7 +12,7 @@ namespace Promptach
             bool isGit = false;
             try
             {
-                var isGitResult = await Wrap("git")
+                BufferedCommandResult isGitResult = await Wrap("git")
                     .WithArguments(["rev-parse", "--is-inside-work-tree"])
                     .ExecuteBufferedAsync();
                 isGit = isGitResult.StandardOutput == "true\n";

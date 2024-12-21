@@ -1,5 +1,3 @@
-using static System.Drawing.Color;
-using static Colorful.Console;
 using System.Threading.Tasks;
 using SmallestCSV;
 using static System.Environment;
@@ -10,23 +8,21 @@ namespace Promptach
 {
     public partial class Path
     {
-        public static async Task Parent()
+        public static async Task<string> Parent()
         {
             string str = await GitParent();
-            using (var stream = new StreamReader(GetEnvironmentVariable("HOME") + "/.config/pathAliases.csv")) 
+            using StreamReader stream = new(GetEnvironmentVariable("HOME") + "/.config/pathAliases.csv");
+            SmallestCSVParser parser = new(stream);
+            while (true)
             {
-                var parser = new SmallestCSVParser(stream);
-                while (true) 
+                List<string>? columns = parser.ReadNextRow();
+                if (columns == null)
                 {
-                    List<string>? columns = parser.ReadNextRow();
-                    if (columns == null) 
-                    {
-                        break;
-                    }
-                    str = str.Replace(columns[0], columns[1]);
+                    break;
                 }
+                str = str.Replace(columns[0], columns[1]);
             }
-            Write(str, Blue);
+            return str;
         }
     }
 }

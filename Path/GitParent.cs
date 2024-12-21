@@ -1,4 +1,3 @@
-using CliWrap;
 using CliWrap.Buffered;
 using System.Threading.Tasks;
 using static System.IO.Directory;
@@ -13,11 +12,11 @@ namespace Promptach
             bool isGit = await IsInGit();
             if (isGit)
             {
-                var prefixResult = await Wrap("git")
+                BufferedCommandResult prefixResult = await Wrap("git")
                     .WithArguments(["rev-parse", "--show-toplevel"])
                     .ExecuteBufferedAsync();
                 string output = prefixResult.StandardOutput;
-                return output.Replace("\n", " ");
+                return output.Replace("\n", "");
             }
             else
             {
