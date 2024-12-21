@@ -5,7 +5,14 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <PublishTrimmed>true</PublishTrimmed>
+
+    <Version>0.1.0</Version>
+    <PackageId>Promptach</PackageId>
+    <Authors>Neila</Authors>
+    <PackageDescription>A simple tool for display PS1, advanced.</PackageDescription>
+    <PackageProjectUrl>https://github.com/neila-a/Promptach</PackageProjectUrl>
+    <DebSection>shells</DebSection>
+    <DebPriority>optional</DebPriority>
   </PropertyGroup>
 
   <ItemGroup>

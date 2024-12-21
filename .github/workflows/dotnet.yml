@@ -27,4 +27,4 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Show
-      run: dotnet bin/Debug/net8.0/Promptach.dll
+      run: dotnet run
