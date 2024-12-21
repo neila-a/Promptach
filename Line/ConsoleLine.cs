@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Colorful;
+using static System.Math;
 using static Colorful.Console;
 
 namespace Promptach.Line
@@ -22,7 +23,7 @@ namespace Promptach.Line
                 this[i].Write();
                 if (i < Count - 1)
                 {
-                    Console.Write(new string(' ', Space));
+                    Console.Write(new string(' ', Max(0, Space)));
                 }
             }
         }
