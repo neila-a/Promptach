@@ -1,3 +1,4 @@
+#include <QDir>
 #include <QTime>
 #include "./line/consoleline.h"
 #include "./line/consoleside.h"
@@ -13,7 +14,8 @@ int main(
 
     QTime time = QTime::currentTime();
     QString timeFormat = settings.value("timeFormat", "HH:mm").toString();
-    ConsoleSide right = {{run("whoami", {}).trimmed(), USERNAME}, {time.toString(timeFormat), TIME}};
+    ConsoleSide right = {{QDir::home().dirName().trimmed(), USERNAME},
+                         {time.toString(timeFormat), TIME}};
 
     ConsoleLine line = {left, right};
     return line.write();
