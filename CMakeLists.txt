@@ -44,8 +44,10 @@ install(TARGETS Promptach
 
 # Pack
 set(CPACK_GENERATOR "DEB")
-set(CPACK_PACKAGE_CONTANT "neilaspace@outlook.com")
+set(CPACK_PACKAGE_CONTACT "neilaspace@outlook.com")
 set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Neila")
 set(CPACK_DEBIAN_PACKAGE_SECTION "shells")
 set(CPACK_DEBIAN_PACKAGE_PRIORITY "optional")
+set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS "ON")
+set(CPACK_DEBIAN_PACKAGE_RECOMMENDS "git")
 include(CPack)
