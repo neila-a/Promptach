@@ -1,5 +1,5 @@
-#include "../util/settings.h"
 #include "./texts.h"
+#include <settings.h>
 
 coloredText path() {
     QString string = gitParentPath();
@@ -11,14 +11,11 @@ const QString Settings::replacePath(
     QString path) {
     QString replaced = path;
 
-    beginGroup("pathAliases");
-
-    const QStringList replacings = allKeys();
-    for (unsigned int i = 0; i < replacings.size(); i++) {
-        replaced = replaced.replace(replacings[i], value(replacings[i]).toString());
+    KConfigGroup pathAliases(this, "pathAliases");
+    QStringList paths = pathAliases.keyList();
+    for (const QString &path : paths) {
+        replaced = replaced.replace(path, pathAliases.readEntry(path, QString()));
     }
-
-    endGroup();
 
     return replaced;
 }

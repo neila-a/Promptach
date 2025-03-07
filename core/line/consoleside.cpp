@@ -20,8 +20,8 @@ const QString ConsoleSide::toString() const {
     for (unsigned int i = 0; i < size(); i++) {
         QString text = at(i).first;
 
-        string += "\e[38;5;";
-        string += QString::number(settings[at(i).second]);
+        string += "\e[";
+        string += settings[at(i).second];
         string += "m";
         string += text;
 

@@ -1,4 +1,5 @@
 #include <QDir>
+#include "../util/utils.h"
 #include "./texts.h"
 
 QString gitParentPath() {

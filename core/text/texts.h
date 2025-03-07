@@ -3,7 +3,6 @@
 
 #include <QStringList>
 #include "../line/consoleside.h"
-#include "../util/utils.h"
 
 QString gitParentPath();
 coloredText gitChildPath();

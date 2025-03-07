@@ -1,3 +1,4 @@
+#include "../util/utils.h"
 #include "./texts.h"
 
 coloredText gitBranch() {

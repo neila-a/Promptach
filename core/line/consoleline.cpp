@@ -33,7 +33,7 @@ const int ConsoleLine::write() const {
     for (unsigned int i = 0; i < size(); i++) {
         stream << at(i).toString();
         if (i < size() - 1) {
-            stream << QString(" ").repeated(space());
+            stream << QStringLiteral(" ").repeated(space());
         }
     }
     stream.flush();

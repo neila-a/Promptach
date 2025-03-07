@@ -3,7 +3,7 @@
 
 #include <QList>
 #include <QPair>
-#include "../util/settings.h"
+#include <settings.h>
 
 typedef std::pair<QString, TextType> coloredText;
 

@@ -1,11 +1,18 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(Promptach
+# Project
+
+set(GLOBAL_PROJECT_NAME "Promptach")
+set(GLOBAL_PROJECT_DESCRIPTION "A simple tool for display PS1, advanced.")
+set(GLOBAL_PROJECT_VERSION 0.2.0)
+
+project(${GLOBAL_PROJECT_NAME}
     LANGUAGES CXX
-    VERSION 0.1.0
-    DESCRIPTION "A simple tool for display PS1, advanced."
+    VERSION ${GLOBAL_PROJECT_VERSION}
+    DESCRIPTION ${GLOBAL_PROJECT_DESCRIPTION}
     HOMEPAGE_URL "https://github.com/neila-a/Promptach"
 )
+
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
@@ -17,37 +24,31 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core)
 
-add_executable(Promptach
-  main.cpp
-
-  line/consoleline.h line/consoleline.cpp
-  line/consoleside.h line/consoleside.cpp
-
-  text/texts.h
-  text/gitParentPath.cpp
-  text/gitChildPath.cpp
-  text/gitBranch.cpp
-  text/path.cpp
-
-  util/utils.h
-  util/run.cpp
-  util/isInGit.cpp
-  util/settings.h util/settings.cpp
-)
-target_link_libraries(Promptach Qt${QT_VERSION_MAJOR}::Core)
-
 include(GNUInstallDirs)
-install(TARGETS Promptach
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-)
+
+# Executable
+
+set(SETTING_HEADERS "settingsbackend")
+set(COMMANDLINEPARSER_HEADERS "commandlineparser")
+
+add_subdirectory(core)
+add_subdirectory(settings)
+add_subdirectory(${SETTING_HEADERS})
+add_subdirectory(${COMMANDLINEPARSER_HEADERS})
 
 # Pack
+
 set(CPACK_GENERATOR "DEB")
 set(CPACK_PACKAGE_CONTACT "neilaspace@outlook.com")
 set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Neila")
 set(CPACK_DEBIAN_PACKAGE_SECTION "shells")
 set(CPACK_DEBIAN_PACKAGE_PRIORITY "optional")
 set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS "ON")
+set(CPACK_DEBIAN_PACKAGE_DEPENDS "konsole-kpart")
 set(CPACK_DEBIAN_PACKAGE_RECOMMENDS "git")
 include(CPack)
+
+install(TARGETS Promptach PromptachSettings PromptachSettingsBackend PromptachCommandLineParser
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+)
