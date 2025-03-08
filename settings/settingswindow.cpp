@@ -7,8 +7,8 @@ SettingsWindow::SettingsWindow(
 
     initing = true;
 
-    KConfigGroup pathAliases(&settings, "pathAliases");
-    QStringList paths = pathAliases.keyList();
+    const KConfigGroup pathAliases(&settings, "pathAliases");
+    const QStringList paths = pathAliases.keyList();
     for (const QString &path : paths) {
         int rowCount = on_addAlias_clicked();
         ui.pathAliasesTable->setItem(rowCount, 0, new QTableWidgetItem(path));

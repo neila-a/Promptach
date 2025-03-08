@@ -1,11 +1,6 @@
 #include "consoleline.h"
 
-ConsoleLine::ConsoleLine(
-    std::initializer_list<ConsoleSide> init) {
-    for (ConsoleSide side : init) {
-        append(side);
-    }
-}
+ConsoleLine::ConsoleLine() {}
 
 const unsigned short ConsoleLine::space() const {
     unsigned short _space = consoleWidth();
@@ -28,7 +23,7 @@ const unsigned short ConsoleLine::consoleWidth() const {
 #endif
 }
 
-const int ConsoleLine::write() const {
+const void ConsoleLine::write() const {
     QTextStream stream(stdout);
     for (unsigned int i = 0; i < size(); i++) {
         stream << at(i).toString();
@@ -37,5 +32,5 @@ const int ConsoleLine::write() const {
         }
     }
     stream.flush();
-    return 0;
+    return;
 }

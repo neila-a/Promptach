@@ -1,10 +1,6 @@
 #include "consoleside.h"
-ConsoleSide::ConsoleSide(
-    std::initializer_list<coloredText> init) {
-    for (coloredText text : init) {
-        append(text);
-    }
-}
+
+ConsoleSide::ConsoleSide() {}
 
 const unsigned int ConsoleSide::totalLength() const {
     unsigned int length = 0;

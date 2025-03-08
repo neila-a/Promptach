@@ -40,3 +40,14 @@ add_library(${PromptachBuiltInTextsPrefix}gitChildPath SHARED
     gitChildPath.cpp
 )
 finalize_target(gitChildPath)
+
+add_library(${PromptachBuiltInTextsPrefix}time SHARED
+    time.cpp
+)
+finalize_target(time)
+target_link_libraries(${PromptachBuiltInTextsPrefix}time PRIVATE PromptachSettingsBackend)
+
+add_library(${PromptachBuiltInTextsPrefix}username SHARED
+    username.cpp
+)
+finalize_target(username)

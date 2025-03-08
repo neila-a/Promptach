@@ -7,8 +7,8 @@
 
 class ConsoleLine : public QList<ConsoleSide> {
 public:
-    ConsoleLine(std::initializer_list<ConsoleSide> init);
-    const int write() const;
+    ConsoleLine();
+    const void write() const;
 
 private:
     const unsigned short space() const;

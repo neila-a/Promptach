@@ -9,7 +9,7 @@ typedef std::pair<QString, TextType> coloredText;
 
 class ConsoleSide : public QList<QPair<QString, TextType>> {
 public:
-    ConsoleSide(std::initializer_list<coloredText> init);
+    ConsoleSide();
     const QString toString() const;
     const unsigned int totalLength() const;
 };
