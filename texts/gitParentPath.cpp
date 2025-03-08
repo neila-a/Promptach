@@ -1,6 +1,6 @@
 #include <QDir>
-#include "../util/utils.h"
 #include "./texts.h"
+#include "./utils.h"
 
 QString gitParentPath() {
     const bool isGit = isInGit();

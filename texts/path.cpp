@@ -1,7 +1,7 @@
 #include "./texts.h"
 #include <settings.h>
 
-coloredText path() {
+extern "C" coloredText entry() {
     QString string = gitParentPath();
     Settings settings;
     return {settings.replacePath(string), PATH};

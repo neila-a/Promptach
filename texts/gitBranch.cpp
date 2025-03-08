@@ -1,7 +1,7 @@
-#include "../util/utils.h"
 #include "./texts.h"
+#include "./utils.h"
 
-coloredText gitBranch() {
+extern "C" coloredText entry() {
     const bool isGit = isInGit();
     QString branch = "";
     if (isGit) {

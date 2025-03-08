@@ -7,16 +7,11 @@ add_executable(Promptach
 
   line/consoleline.h line/consoleline.cpp
   line/consoleside.h line/consoleside.cpp
-
-  text/texts.h
-  text/gitParentPath.cpp
-  text/gitChildPath.cpp
-  text/gitBranch.cpp
-  text/path.cpp
-
-  util/utils.h
-  util/run.cpp
-  util/isInGit.cpp
 )
 target_include_directories(Promptach PRIVATE ../${SETTING_HEADERS} ../${COMMANDLINEPARSER_HEADERS})
 target_link_libraries(Promptach PRIVATE PromptachSettingsBackend PromptachCommandLineParser)
+set(CMAKE_INSTALL_PREFIX /usr)
+target_compile_definitions(Promptach PRIVATE
+    TEXTSDIR="${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}/PromptachTexts/"
+    PromptachBuiltInTextsPrefix="${PromptachBuiltInTextsPrefix}"
+)

@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.16)
 
 set(GLOBAL_PROJECT_NAME "Promptach")
 set(GLOBAL_PROJECT_DESCRIPTION "A simple tool for display PS1, advanced.")
-set(GLOBAL_PROJECT_VERSION 0.2.0)
+set(GLOBAL_PROJECT_VERSION 0.3.0)
 
 project(${GLOBAL_PROJECT_NAME}
     LANGUAGES CXX
@@ -29,12 +29,16 @@ include(GNUInstallDirs)
 # Executable
 
 set(SETTING_HEADERS "settingsbackend")
+set(CORE_HEADERS "core")
 set(COMMANDLINEPARSER_HEADERS "commandlineparser")
 
-add_subdirectory(core)
+set(PromptachBuiltInTextsPrefix "PromptachBuiltInTexts_")
+
+add_subdirectory(${CORE_HEADERS})
 add_subdirectory(settings)
 add_subdirectory(${SETTING_HEADERS})
 add_subdirectory(${COMMANDLINEPARSER_HEADERS})
+add_subdirectory(texts)
 
 # Pack
 
