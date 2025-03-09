@@ -1,10 +1,22 @@
 #include "./texts.h"
+#include "pathaliastable.h"
 #include <settings.h>
 
 extern "C" coloredText entry() {
     QString string = gitParentPath();
     Settings settings;
     return {settings.replacePath(string), PATH};
+}
+
+extern "C" void config(
+    QWidget *parent, std::function<void()> synced) {
+    QHBoxLayout *layout = new QHBoxLayout;
+    layout->setContentsMargins(0, 0, 0, 0);
+
+    PathAliasTable *table = new PathAliasTable(synced);
+    layout->addWidget(table);
+
+    parent->setLayout(layout);
 }
 
 const QString Settings::replacePath(

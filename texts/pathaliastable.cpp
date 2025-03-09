@@ -1,6 +1,6 @@
-#include "settingswindow.h"
+#include "pathaliastable.h"
 
-void SettingsWindow::initPathAliasTable() {
+void PathAliasTable::initPathAliasTable() {
     const KConfigGroup pathAliases(&settings, "pathAliases");
     const QStringList paths = pathAliases.keyList();
     for (const QString &path : paths) {
@@ -12,13 +12,13 @@ void SettingsWindow::initPathAliasTable() {
     }
 }
 
-int SettingsWindow::on_addAlias_clicked() {
+int PathAliasTable::on_addAlias_clicked() {
     int newRowCount = ui.pathAliasesTable->rowCount() + 1;
     ui.pathAliasesTable->setRowCount(newRowCount);
     return newRowCount - 1; // index = count - 1
 }
 
-void SettingsWindow::on_pathAliasesTable_itemChanged(
+void PathAliasTable::on_pathAliasesTable_itemChanged(
     QTableWidgetItem *item) {
     if (initing)
         return;
@@ -38,14 +38,14 @@ void SettingsWindow::on_pathAliasesTable_itemChanged(
     pathAliases.config()->sync();
 }
 
-void SettingsWindow::on_pathAliasesTable_itemSelectionChanged() {
+void PathAliasTable::on_pathAliasesTable_itemSelectionChanged() {
     const QList<QTableWidgetItem *> selectedItems = ui.pathAliasesTable->selectedItems();
     if (selectedItems.length() != 0)
         qDebug() << selectedItems.at(0)->text();
     ui.removeAlias->setDisabled(selectedItems.length() == 0);
 }
 
-void SettingsWindow::on_removeAlias_clicked() {
+void PathAliasTable::on_removeAlias_clicked() {
     const int currentRow = ui.pathAliasesTable->currentRow();
 
     KConfigGroup pathAliases(&settings, "pathAliases");

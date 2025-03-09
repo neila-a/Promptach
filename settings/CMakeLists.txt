@@ -5,8 +5,6 @@ project(PromptachSettings VERSION 0.1 LANGUAGES CXX)
 find_package(KF6Service)
 find_package(KF6Parts)
 find_package(KF6CoreAddons)
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets LinguistTools)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools)
 
 set(TS_FILES PromptachSettings_zh_CN.ts)
 
@@ -21,7 +19,6 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(PromptachSettings
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        pathaliastable.cpp
 
         previewer.h previewer.cpp
         settings.qrc

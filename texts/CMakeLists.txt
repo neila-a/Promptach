@@ -31,8 +31,13 @@ add_library(${PromptachBuiltInTextsPrefix}path SHARED
     path.cpp
     texts.h
     gitParentPath.cpp
+
+    pathAliasTable.ui
+    pathaliastable.h
+    pathaliastable.cpp
 )
 finalize_target(path)
+target_link_libraries(${PromptachBuiltInTextsPrefix}path PRIVATE Qt6::Widgets)
 
 add_library(${PromptachBuiltInTextsPrefix}gitBranch SHARED
     gitBranch.cpp
@@ -48,7 +53,7 @@ add_library(${PromptachBuiltInTextsPrefix}time SHARED
     time.cpp
 )
 finalize_target(time)
-target_link_libraries(${PromptachBuiltInTextsPrefix}time PRIVATE PromptachSettingsBackend)
+target_link_libraries(${PromptachBuiltInTextsPrefix}time PRIVATE Qt6::Widgets)
 
 add_library(${PromptachBuiltInTextsPrefix}username SHARED
     username.cpp

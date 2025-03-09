@@ -14,12 +14,6 @@ public:
     ~SettingsWindow();
 
 private slots:
-    int on_addAlias_clicked();
-    void on_removeAlias_clicked();
-    void on_pathAliasesTable_itemChanged(QTableWidgetItem *item);
-    void on_pathAliasesTable_itemSelectionChanged();
-    void on_timeFormatEdit_editingFinished();
-
     void updatePreviewer();
 
     void on_textsView_clicked(const QModelIndex &index);
@@ -39,13 +33,13 @@ private:
     Ui::SettingsWindow ui;
 
     void initTextsView();
-    void initPathAliasTable();
     void initFormatEdit();
+
+    void recreateConfigWidget();
 
     QList<int> pos;
     const int locatePreviewer() const;
     Settings settings;
-    bool initing = false;
 };
 
 #endif // SETTINGSWINDOW_H

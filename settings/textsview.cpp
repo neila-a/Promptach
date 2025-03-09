@@ -50,7 +50,7 @@ void SettingsWindow::on_textsView_clicked(
      */
     const QList<QWidgetList> all = {{ui.removeLine, ui.addSide},
                                     {ui.removeSide, ui.addText, ui.removeText},
-                                    {ui.removeText, ui.sourceEdit, ui.formatEdit}};
+                                    {ui.removeText, ui.sourceEdit, ui.formatEdit, ui.configWidget}};
     for (qsizetype i = 0; i < all.size(); i++)
         if (i <= level) {
             for (QWidget *enable : all.at(i))
@@ -63,14 +63,33 @@ void SettingsWindow::on_textsView_clicked(
     if (level == 2) {
         ui.sourceEdit->setText(settings.getTextsList().at(pos.at(0)).at(pos.at(1)).at(pos.at(2)));
         initFormatEdit();
+    } else {
+        recreateConfigWidget();
     }
+}
+
+void SettingsWindow::recreateConfigWidget() {
+    delete ui.configWidget;
+    ui.configWidget = new QWidget(ui.centralwidget);
+    ui.configWidget->setObjectName("configWidget");
+
+    ui.verticalLayout_5->insertWidget(2, ui.configWidget);
 }
 
 void SettingsWindow::initFormatEdit() {
     QLibrary library(TEXTSDIR + ui.sourceEdit->text());
     textFunction entry = (textFunction) library.resolve("entry");
     ui.formatEdit->setEnabled(library.isLoaded());
-    ui.formatEdit->setText(settings[entry().second]);
+    if (entry) {
+        ui.formatEdit->setText(settings[entry().second]);
+    }
+
+    configFunction config = (configFunction) library.resolve("config");
+    recreateConfigWidget();
+    if (config) {
+        config(ui.configWidget, [this]() -> void { updatePreviewer(); });
+        ui.configWidget->show();
+    }
 }
 
 void SettingsWindow::on_sourceEdit_editingFinished() {
