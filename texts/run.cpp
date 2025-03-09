@@ -8,9 +8,5 @@ QString run(
     process.setArguments(arguments);
     process.start();
     const bool finished = process.waitForFinished();
-    if (finished) {
-        return QString(process.readAllStandardOutput());
-    } else {
-        return "";
-    }
+    return finished ? QString(process.readAllStandardOutput()) : "";
 }

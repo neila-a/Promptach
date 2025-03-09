@@ -25,6 +25,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 
         previewer.h previewer.cpp
         settings.qrc
+        textsview.cpp
+        textsview_buttons.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET PromptachSettings APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
@@ -48,7 +50,7 @@ else()
     qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 endif()
 
-target_include_directories(PromptachSettings PRIVATE ../${SETTING_HEADERS} ../${COMMANDLINEPARSER_HEADERS})
+target_include_directories(PromptachSettings PRIVATE ../${SETTING_HEADERS} ../${COMMANDLINEPARSER_HEADERS} ../${CORE_HEADERS})
 target_link_libraries(PromptachSettings PRIVATE
     Qt${QT_VERSION_MAJOR}::Widgets
 
@@ -77,3 +79,8 @@ set_target_properties(PromptachSettings PROPERTIES
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(PromptachSettings)
 endif()
+
+target_compile_definitions(PromptachSettings PRIVATE
+    TEXTSDIR="${TEXTSDIR}"
+    PromptachBuiltInTextsPrefix="${PromptachBuiltInTextsPrefix}"
+)

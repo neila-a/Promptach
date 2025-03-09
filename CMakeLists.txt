@@ -18,6 +18,8 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
+set(CMAKE_INSTALL_PREFIX /usr)
+
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -33,6 +35,7 @@ set(CORE_HEADERS "core")
 set(COMMANDLINEPARSER_HEADERS "commandlineparser")
 
 set(PromptachBuiltInTextsPrefix "PromptachBuiltInTexts_")
+set(TEXTSDIR "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}/PromptachTexts/")
 
 add_subdirectory(${CORE_HEADERS})
 add_subdirectory(settings)

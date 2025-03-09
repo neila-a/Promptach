@@ -21,7 +21,7 @@ Previewer::Previewer(
         verticalLayout->addWidget(part->widget());
     } catch (...) {
     }
-    setMaximumHeight(35);
+    setMaximumHeight(100);
     verticalLayout->setContentsMargins(0, 0, 0, 0);
     setLayout(verticalLayout);
 }

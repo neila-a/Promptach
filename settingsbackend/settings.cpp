@@ -8,7 +8,7 @@ Settings::Settings(
     , QObject() {}
 
 const QString Settings::operator[](
-    TextType type) {
+    TextType type) const {
     QString typeNumber = QString::number(type);
     const KConfigGroup formats(this, "format");
     const QString color = formats.readEntry(typeNumber, "38;5;" + typeNumber);
@@ -19,4 +19,32 @@ bool Settings::sync() {
     bool done = KConfig::sync();
     emit synced();
     return done;
+}
+
+const TextsList Settings::getTextsList() const {
+    const KConfigGroup generalGroup(this, QStringLiteral("General"));
+    const TextsList defaultTextsList = {{BuiltInTextsList{"path", "gitBranch", "gitChildPath"},
+                                         BuiltInTextsList{"username", "time"}}};
+
+    QByteArray out;
+    QDataStream outStream(&out, QIODevice::WriteOnly);
+    outStream << defaultTextsList;
+    const QByteArray in = generalGroup.readEntry("textsList", out);
+    QDataStream inStream(in);
+    TextsList got;
+    inStream >> got;
+    return got;
+}
+
+void Settings::modifyTextsList(
+    std::function<void(TextsList *list)> modifier) {
+    TextsList textsList = getTextsList();
+    modifier(&textsList);
+    KConfigGroup generalGroup(this, QStringLiteral("General"));
+
+    QByteArray out;
+    QDataStream outStream(&out, QIODevice::WriteOnly);
+    outStream << textsList;
+    generalGroup.writeEntry("textsList", out);
+    generalGroup.config()->sync();
 }

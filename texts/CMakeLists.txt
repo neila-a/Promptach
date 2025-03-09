@@ -18,6 +18,9 @@ install(TARGETS PromptachBuiltInTextsCommon
 function(finalize_target name)
     target_link_libraries(${PromptachBuiltInTextsPrefix}${name} PRIVATE PromptachBuiltInTextsCommon)
     target_include_directories(${PromptachBuiltInTextsPrefix}${name} PRIVATE ../${CORE_HEADERS} ../${SETTING_HEADERS})
+    target_compile_definitions(${PromptachBuiltInTextsPrefix}${name} PRIVATE
+        PromptachBuiltInTextsPrefix="${PromptachBuiltInTextsPrefix}"
+    )
     install(TARGETS ${PromptachBuiltInTextsPrefix}${name}
         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/PromptachTexts
         RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}

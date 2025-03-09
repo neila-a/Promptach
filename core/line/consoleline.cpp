@@ -4,9 +4,8 @@ ConsoleLine::ConsoleLine() {}
 
 const unsigned short ConsoleLine::space() const {
     unsigned short _space = consoleWidth();
-    for (unsigned int i = 0; i < size(); i++) {
+    for (qsizetype i = 0; i < size(); i++)
         _space -= at(i).totalLength();
-    }
     return _space;
 }
 
@@ -25,11 +24,10 @@ const unsigned short ConsoleLine::consoleWidth() const {
 
 const void ConsoleLine::write() const {
     QTextStream stream(stdout);
-    for (unsigned int i = 0; i < size(); i++) {
+    for (qsizetype i = 0; i < size(); i++) {
         stream << at(i).toString();
-        if (i < size() - 1) {
-            stream << QStringLiteral(" ").repeated(space());
-        }
+        if (i < size() - 1)
+            stream << QStringLiteral(" ").repeated(space() / (length() - 1));
     }
     stream.flush();
     return;

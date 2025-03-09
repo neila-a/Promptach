@@ -8,19 +8,6 @@
 #include <promptachcommandlineparser.h>
 #include <settings.h>
 
-typedef coloredText (*textFunction)();
-typedef QList<QList<QStringList>> TextsList;
-
-class BuiltInTextsList : public QStringList {
-public:
-    BuiltInTextsList(
-        std::initializer_list<QString> init) {
-        for (const QString &text : init) {
-            append(PromptachBuiltInTextsPrefix + text);
-        }
-    }
-};
-
 int main(
     int argc, char *argv[]) {
     QCoreApplication a(argc, argv);
@@ -29,12 +16,7 @@ int main(
     int errorNumber = 0;
 
     const Settings settings;
-    const KConfigGroup generalGroup(&settings, QStringLiteral("General"));
-    const TextsList defaultTextsList = {{BuiltInTextsList{"path", "gitBranch", "gitChildPath"},
-                                         BuiltInTextsList{"username", "time", "ti"}}};
-    const TextsList textsList = generalGroup
-                                    .readEntry("textsList", QVariant::fromValue(defaultTextsList))
-                                    .value<TextsList>();
+    const TextsList textsList = settings.getTextsList();
     for (const QList<QStringList> &line : textsList) {
         ConsoleLine consoleLine;
         for (const QStringList &side : line) {

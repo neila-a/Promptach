@@ -1,4 +1,5 @@
 #include "settingswindow.h"
+
 SettingsWindow::SettingsWindow(
     QWidget *parent)
     : QMainWindow(parent) {
@@ -7,15 +8,8 @@ SettingsWindow::SettingsWindow(
 
     initing = true;
 
-    const KConfigGroup pathAliases(&settings, "pathAliases");
-    const QStringList paths = pathAliases.keyList();
-    for (const QString &path : paths) {
-        int rowCount = on_addAlias_clicked();
-        ui.pathAliasesTable->setItem(rowCount, 0, new QTableWidgetItem(path));
-        ui.pathAliasesTable->setItem(rowCount,
-                                     1,
-                                     new QTableWidgetItem(pathAliases.readEntry(path, QString())));
-    }
+    initTextsView();
+    initPathAliasTable();
 
     initing = false;
 
@@ -47,12 +41,13 @@ void SettingsWindow::updatePreviewer() {
     ui.previewer->deleteLater();
     ui.previewer = new Previewer(this);
     ui.verticalLayout->insertWidget(index, ui.previewer);
+
+    initTextsView();
 }
 
-void SettingsWindow::on_timeFormatEdit_textEdited(
-    const QString &text) {
+void SettingsWindow::on_timeFormatEdit_editingFinished() {
+    const QString text = ui.timeFormatEdit->text();
     KConfigGroup generalGroup(&settings, "General");
     generalGroup.writeEntry("timeFormat", text);
     generalGroup.config()->sync();
 }
-

@@ -1,7 +1,7 @@
 #include "promptachcommandlineparser.h"
 
 PromptachCommandLineParser::PromptachCommandLineParser() {
-    setApplicationDescription(QCoreApplication::translate("project", _PROJECT_DESCRIPTION));
+    setApplicationDescription(tr("project", _PROJECT_DESCRIPTION));
 }
 
 void PromptachCommandLineParser::process(

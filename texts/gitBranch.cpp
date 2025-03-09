@@ -3,9 +3,6 @@
 
 extern "C" coloredText entry() {
     const bool isGit = isInGit();
-    QString branch = "";
-    if (isGit) {
-        branch = run("git", {"branch", "--show-current"}).trimmed();
-    }
+    QString branch = isGit ? run("git", {"branch", "--show-current"}).trimmed() : "";
     return {branch, GITBRANCH};
 }

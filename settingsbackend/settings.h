@@ -2,6 +2,7 @@
 #define SETTINGS_H
 
 #include "./PromptachSettingsBackend_global.h"
+#include "./builtintextslist.h"
 #include <KConfig>
 #include <KConfigGroup>
 
@@ -12,10 +13,13 @@ class PROMPTACHSETTINGSBACKEND_EXPORT Settings : public QObject, public KConfig 
 public:
     explicit Settings(KConfig *parent = nullptr);
 
-    const QString replacePath(QString path);
+    const QString replacePath(QString path) const;
     bool sync() override;
     // format
-    const QString operator[](TextType);
+    const QString operator[](TextType) const;
+
+    void modifyTextsList(std::function<void(TextsList *list)> modifier);
+    const TextsList getTextsList() const;
 signals:
     void synced();
 };

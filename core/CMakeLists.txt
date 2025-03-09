@@ -10,8 +10,7 @@ add_executable(Promptach
 )
 target_include_directories(Promptach PRIVATE ../${SETTING_HEADERS} ../${COMMANDLINEPARSER_HEADERS})
 target_link_libraries(Promptach PRIVATE PromptachSettingsBackend PromptachCommandLineParser)
-set(CMAKE_INSTALL_PREFIX /usr)
 target_compile_definitions(Promptach PRIVATE
-    TEXTSDIR="${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}/PromptachTexts/"
+    TEXTSDIR="${TEXTSDIR}"
     PromptachBuiltInTextsPrefix="${PromptachBuiltInTextsPrefix}"
 )

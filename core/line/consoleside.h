@@ -6,12 +6,13 @@
 #include <settings.h>
 
 typedef std::pair<QString, TextType> coloredText;
+typedef coloredText (*textFunction)();
 
 class ConsoleSide : public QList<QPair<QString, TextType>> {
 public:
     ConsoleSide();
     const QString toString() const;
-    const unsigned int totalLength() const;
+    const qsizetype totalLength() const;
 };
 
 #endif // CONSOLESIDE_H
