@@ -1,9 +1,10 @@
 #include "./texts.h"
 #include "pathaliastable.h"
+#include "utils.h"
 #include <settings.h>
 
 extern "C" coloredText entry() {
-    QString string = gitParentPath();
+    QString string = replaceSymbolLink("", gitParentPath());
     Settings settings;
     return {settings.replacePath(string), PATH};
 }

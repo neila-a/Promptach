@@ -35,5 +35,6 @@ int main(
         }
         consoleLine.write();
     }
+
     return errorNumber;
 }

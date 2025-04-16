@@ -30,7 +30,9 @@ endfunction(finalize_target)
 add_library(${PromptachBuiltInTextsPrefix}path SHARED
     path.cpp
     texts.h
+    utils.h
     gitParentPath.cpp
+    replaceSymbolLink.cpp
 
     pathAliasTable.ui
     pathaliastable.h
@@ -45,7 +47,10 @@ add_library(${PromptachBuiltInTextsPrefix}gitBranch SHARED
 finalize_target(gitBranch)
 
 add_library(${PromptachBuiltInTextsPrefix}gitChildPath SHARED
+    utils.h
+    gitParentPath.cpp
     gitChildPath.cpp
+    replaceSymbolLink.cpp
 )
 finalize_target(gitChildPath)
 
