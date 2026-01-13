@@ -9,14 +9,14 @@ Previewer::Previewer(
     : QWidget{parent} {
     try {
         const KPluginMetaData metaData
-            = KPluginMetaData::findPluginById("/usr/lib/x86_64-linux-gnu/qt6/plugins/kf6/parts",
+            = KPluginMetaData::findPluginById("kf6/parts",
                                               "konsolepart");
         const KPluginFactory::Result<KPluginFactory> factory = KPluginFactory::loadFactory(metaData);
         KPluginFactory *plugin = factory.plugin;
         const QList empty = {QVariant()};
         KParts::ReadOnlyPart *part = plugin->create<KParts::ReadOnlyPart>(this, empty);
         TerminalInterface *interface = qobject_cast<TerminalInterface *>(part);
-        interface->startProgram("Promptach", {});
+        interface->startProgram("./Promptach", {});
 
         verticalLayout->addWidget(part->widget());
     } catch (...) {

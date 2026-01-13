@@ -1,6 +1,7 @@
 #include "settings.h"
 #include <QDir>
 #include <QProcessEnvironment>
+#include <QCoreApplication>
 
 Settings::Settings(
     KConfig *parent)
@@ -34,6 +35,14 @@ const TextsList Settings::getTextsList() const {
     TextsList got;
     inStream >> got;
     return got;
+}
+
+const QString Settings::getTextsDir() {
+    QDir binDir = QDir(QCoreApplication::applicationDirPath());
+    binDir.cdUp();
+    binDir.cd("lib");
+    binDir.cd("PromptachTexts");
+    return binDir.absolutePath() + "/";
 }
 
 void Settings::modifyTextsList(

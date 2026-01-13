@@ -4,17 +4,17 @@ project(PromptachBuiltInTexts LANGUAGES CXX)
 
 find_package(KF6Config)
 
-add_library(PromptachBuiltInTextsCommon SHARED
+add_library(PromptachBuiltInTextsCommon STATIC
     utils.h
     isInGit.cpp
     run.cpp
 )
-target_link_libraries(PromptachBuiltInTextsCommon PUBLIC Qt${QT_VERSION_MAJOR}::Core KF6::ConfigCore)
+target_link_libraries(PromptachBuiltInTextsCommon PUBLIC PromptachSettingsBackend)
 install(TARGETS PromptachBuiltInTextsCommon
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
-
+set(CMAKE_INSTALL_RPATH "$ORIGIN/../lib")
 function(finalize_target name)
     target_link_libraries(${PromptachBuiltInTextsPrefix}${name} PRIVATE PromptachBuiltInTextsCommon)
     target_include_directories(${PromptachBuiltInTextsPrefix}${name} PRIVATE ../${CORE_HEADERS} ../${SETTING_HEADERS})

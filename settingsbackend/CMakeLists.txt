@@ -4,7 +4,7 @@ project(PromptachSettingsBackend LANGUAGES CXX)
 
 find_package(KF6Config)
 
-add_library(PromptachSettingsBackend SHARED
+add_library(PromptachSettingsBackend STATIC
   PromptachSettingsBackend_global.h
   settings.cpp
   settings.h

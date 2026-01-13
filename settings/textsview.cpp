@@ -1,6 +1,7 @@
 #include <QColumnView>
 #include <QLibrary>
 #include <QStandardItem>
+#include <QDir>
 #include "settingswindow.h"
 #include <line/consoleside.h>
 
@@ -77,7 +78,7 @@ void SettingsWindow::recreateConfigWidget() {
 }
 
 void SettingsWindow::initFormatEdit() {
-    QLibrary library(TEXTSDIR + ui.sourceEdit->text());
+    QLibrary library(Settings::getTextsDir() + ui.sourceEdit->text() + ".so");
     textFunction entry = (textFunction) library.resolve("entry");
     ui.formatEdit->setEnabled(library.isLoaded());
     if (entry) {
@@ -110,7 +111,7 @@ void SettingsWindow::on_formatEdit_editingFinished() {
     /*
      * It must be loadable because if it isn't loadable it will not be edited.
      */
-    textFunction entry = (textFunction) QLibrary::resolve(TEXTSDIR + ui.sourceEdit->text(), "entry");
+    textFunction entry = (textFunction) QLibrary::resolve(Settings::getTextsDir() + ui.sourceEdit->text(), "entry");
     formats.writeEntry(QString::number(entry().second), ui.formatEdit->text());
     formats.config()->sync();
 }

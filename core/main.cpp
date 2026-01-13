@@ -22,7 +22,7 @@ int main(
         for (const QStringList &side : line) {
             ConsoleSide consoleSide;
             for (QString text : side) {
-                QLibrary library(TEXTSDIR + text);
+                QLibrary library(Settings::getTextsDir() + text + ".so");
                 textFunction _return = (textFunction) library.resolve("entry");
                 if (_return) {
                     consoleSide.append(_return());

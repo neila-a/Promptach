@@ -1,2 +1,4 @@
-build/
+build
 *.qm
+.vscode/c_cpp_properties.json
+result
