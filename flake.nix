@@ -1,5 +1,5 @@
 {
-  description = "A pluggable, highly configurable prompt generator written in C++.";
+  description = "A pluggable, highly configurable prompt generator.";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     systems.url = "github:nix-systems/x86_64-linux";
@@ -74,6 +74,13 @@
             ninja install
             cp -r install/* $out/
           '';
+
+          meta = {
+            homepage = "https://github.com/neila-a/Promptach";
+            license = pkgs.lib.licenses.gpl3Plus;
+            platforms = pkgs.lib.platforms.linux;
+            mainProgram = "Promptach";
+          };
         };
       devShells."${system}".default = pkgs.mkShell {
         inherit (commonInputs) nativeBuildInputs buildInputs;
