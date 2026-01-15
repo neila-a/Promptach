@@ -2,7 +2,7 @@
 
 A pluggable, highly configurable prompt generator.
 
-## Why use Promptach
+## Features
 
 ### A brand-new path display
 
