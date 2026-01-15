@@ -46,7 +46,3 @@ set_target_properties(PromptachSettings PROPERTIES
 )
 
 qt_finalize_executable(PromptachSettings)
-
-target_compile_definitions(PromptachSettings PRIVATE
-    PromptachBuiltInTextsPrefix="${PromptachBuiltInTextsPrefix}"
-)

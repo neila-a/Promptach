@@ -10,7 +10,7 @@ public:
     BuiltInTextsList(
         std::initializer_list<QString> init) {
         for (const QString &text : init) {
-            append(PromptachBuiltInTextsPrefix + text);
+            append(text);
         }
     }
 };

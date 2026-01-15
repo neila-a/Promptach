@@ -12,7 +12,3 @@ add_library(PromptachSettingsBackend STATIC
 )
 
 target_link_libraries(PromptachSettingsBackend PUBLIC Qt${QT_VERSION_MAJOR}::Core KF6::ConfigCore)
-target_compile_definitions(PromptachSettingsBackend PRIVATE
-    PROMPTACHSETTINGSBACKEND_LIBRARY
-    PromptachBuiltInTextsPrefix="${PromptachBuiltInTextsPrefix}"
-)

@@ -35,8 +35,6 @@ set(SETTING_HEADERS "settingsbackend")
 set(CORE_HEADERS "core")
 set(COMMANDLINEPARSER_HEADERS "commandlineparser")
 
-set(PromptachBuiltInTextsPrefix "PromptachBuiltInTexts_")
-
 add_subdirectory(${CORE_HEADERS})
 add_subdirectory(settings)
 add_subdirectory(${SETTING_HEADERS})

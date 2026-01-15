@@ -40,8 +40,7 @@ const TextsList Settings::getTextsList() const {
 const QString Settings::getTextsDir() {
     QDir binDir = QDir(QCoreApplication::applicationDirPath());
     binDir.cdUp();
-    binDir.cd("lib");
-    binDir.cd("PromptachTexts");
+    binDir.cd("lib/qt-6/plugins/promptach/texts");
     return binDir.absolutePath() + "/";
 }
 
