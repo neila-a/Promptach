@@ -1,6 +1,6 @@
-#include "./texts.h"
 #include "pathaliastable.h"
-#include "utils.h"
+#include <texts.h>
+#include <utils.h>
 #include <settings.h>
 
 extern "C" coloredText entry() {

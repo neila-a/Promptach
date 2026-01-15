@@ -1,6 +1,6 @@
 #include <QDir>
-#include "./texts.h"
-#include "./utils.h"
+#include <texts.h>
+#include <utils.h>
 
 extern "C" coloredText entry() {
     QString output = run("git", {"rev-parse", "--show-prefix"}).replace("\n", ""), childPath = "";

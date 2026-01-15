@@ -24,8 +24,8 @@ bool Settings::sync() {
 
 const TextsList Settings::getTextsList() const {
     const KConfigGroup generalGroup(this, QStringLiteral("General"));
-    const TextsList defaultTextsList = {{BuiltInTextsList{"path", "gitBranch", "gitChildPath"},
-                                         BuiltInTextsList{"username", "time"}}};
+    const TextsList defaultTextsList = {{QStringList{"path", "gitBranch", "gitChildPath"},
+                                         QStringList{"username", "time"}}};
 
     QByteArray out;
     QDataStream outStream(&out, QIODevice::WriteOnly);

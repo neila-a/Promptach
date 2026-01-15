@@ -2,11 +2,11 @@
 #define SETTINGS_H
 
 #include "./PromptachSettingsBackend_global.h"
-#include "./builtintextslist.h"
 #include <KConfig>
 #include <KConfigGroup>
 
 enum TextType { PATH = 39, GITBRANCH = 220, GITCHILDPATH = 202, USERNAME = 46, TIME = 201 };
+typedef QList<QList<QStringList>> TextsList;
 
 class PROMPTACHSETTINGSBACKEND_EXPORT Settings : public QObject, public KConfig {
     Q_OBJECT

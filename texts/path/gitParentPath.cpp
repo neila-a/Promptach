@@ -1,6 +1,6 @@
 #include <QDir>
-#include "./texts.h"
-#include "./utils.h"
+#include <texts.h>
+#include <utils.h>
 
 QString gitParentPath() {
     const QString all = qEnvironmentVariable("PWD", QDir::current().absolutePath()).trimmed();

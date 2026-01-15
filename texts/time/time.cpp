@@ -3,6 +3,7 @@
 #include <QLineEdit>
 #include <line/consoleside.h>
 #include <settings.h>
+#include <texts.h>
 
 extern "C" coloredText entry() {
     const QTime time = QTime::currentTime();
