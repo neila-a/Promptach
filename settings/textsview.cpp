@@ -1,24 +1,25 @@
 #include <QColumnView>
-#include <QLibrary>
+#include <textloader.h>
 #include <QStandardItem>
 #include <QDir>
 #include "settingswindow.h"
 #include <line/consoleside.h>
+#include <textinterface.h>
 
-typedef QList<QWidget *> QWidgetList;
+typedef QList<QWidget*> QWidgetList;
 
 void SettingsWindow::initTextsView() {
     const TextsList textsList = settings.getTextsList();
-    QStandardItemModel *model = new QStandardItemModel;
+    QStandardItemModel* model = new QStandardItemModel;
     for (qsizetype lineIndex = 0; lineIndex < textsList.size(); lineIndex++) {
         QList<QStringList> thisLine = textsList.at(lineIndex);
-        QStandardItem *thisLineItem = new QStandardItem(tr("第%1行").arg(lineIndex + 1));
+        QStandardItem* thisLineItem = new QStandardItem(tr("第%1行").arg(lineIndex + 1));
         for (qsizetype sideIndex = 0; sideIndex < thisLine.size(); sideIndex++) {
             QStringList thisSide = thisLine.at(sideIndex);
-            QStandardItem *thisSideItem = new QStandardItem(tr("第%1边").arg(sideIndex + 1));
+            QStandardItem* thisSideItem = new QStandardItem(tr("第%1边").arg(sideIndex + 1));
             for (qsizetype textIndex = 0; textIndex < thisSide.size(); textIndex++) {
                 QString thisText = thisSide.at(textIndex);
-                QStandardItem *thisTextItem = new QStandardItem(thisText);
+                QStandardItem* thisTextItem = new QStandardItem(thisText);
                 thisSideItem->appendRow(thisTextItem);
             }
             thisLineItem->appendRow(thisSideItem);
@@ -29,10 +30,10 @@ void SettingsWindow::initTextsView() {
 }
 
 void SettingsWindow::on_textsView_clicked(
-    const QModelIndex &index) {
+    const QModelIndex& index) {
     /*
-     * 0: line  
-     * 1: side  
+     * 0: line
+     * 1: side
      * 2: text
      */
     int level = -1;
@@ -49,15 +50,15 @@ void SettingsWindow::on_textsView_clicked(
     /*
      * It can't be place in constructor because pointer of widgets will have change.
      */
-    const QList<QWidgetList> all = {{ui.removeLine, ui.addSide},
+    const QList<QWidgetList> all = { {ui.removeLine, ui.addSide},
                                     {ui.removeSide, ui.addText, ui.removeText},
-                                    {ui.removeText, ui.sourceEdit, ui.formatEdit, ui.configWidget}};
+                                    {ui.removeText, ui.sourceEdit, ui.formatEdit, ui.configWidget} };
     for (qsizetype i = 0; i < all.size(); i++)
         if (i <= level) {
-            for (QWidget *enable : all.at(i))
+            for (QWidget* enable : all.at(i))
                 enable->setEnabled(true);
             if (i < 2)
-                for (QWidget *disable : all.at(i + 1))
+                for (QWidget* disable : all.at(i + 1))
                     disable->setEnabled(false);
         }
 
@@ -78,23 +79,20 @@ void SettingsWindow::recreateConfigWidget() {
 }
 
 void SettingsWindow::initFormatEdit() {
-    QLibrary library(Settings::getTextsDir() + ui.sourceEdit->text() + ".so");
-    textFunction entry = (textFunction) library.resolve("entry");
-    ui.formatEdit->setEnabled(library.isLoaded());
-    if (entry) {
-        ui.formatEdit->setText(settings[entry().second]);
-    }
-
-    configFunction config = (configFunction) library.resolve("config");
-    recreateConfigWidget();
-    if (config) {
-        config(ui.configWidget, [this]() -> void { updatePreviewer(); });
+    TextLoader textLoader(ui.sourceEdit->text());
+    QObject* gotTextPlugin = textLoader.instance();
+    if (gotTextPlugin) {
+        TextInterface* textPlugin = qobject_cast<TextInterface*>(gotTextPlugin);
+        ui.formatEdit->setText(settings[textPlugin->getText().second]);
+        recreateConfigWidget();
+        textPlugin->drawConfigInterface(ui.configWidget, [this]() -> void { updatePreviewer(); });
         ui.configWidget->show();
     }
+    ui.formatEdit->setEnabled(textLoader.isLoaded());
 }
 
 void SettingsWindow::on_sourceEdit_editingFinished() {
-    settings.modifyTextsList([this](TextsList *list) -> void {
+    settings.modifyTextsList([this](TextsList* list) -> void {
         QList<QStringList> thisLine = list->at(pos.at(0));
         QStringList thisSide = thisLine.at(pos.at(1));
 
@@ -102,7 +100,7 @@ void SettingsWindow::on_sourceEdit_editingFinished() {
 
         thisLine.replace(pos.at(1), thisSide);
         list->replace(pos.at(0), thisLine);
-    });
+        });
     return initFormatEdit();
 }
 
@@ -111,7 +109,12 @@ void SettingsWindow::on_formatEdit_editingFinished() {
     /*
      * It must be loadable because if it isn't loadable it will not be edited.
      */
-    textFunction entry = (textFunction) QLibrary::resolve(Settings::getTextsDir() + ui.sourceEdit->text(), "entry");
-    formats.writeEntry(QString::number(entry().second), ui.formatEdit->text());
-    formats.config()->sync();
+
+    QPluginLoader textLoader("promptach/texts" + ui.sourceEdit->text());
+    QObject* gotTextPlugin = textLoader.instance();
+    if (gotTextPlugin) {
+        TextInterface* textPlugin = qobject_cast<TextInterface*>(gotTextPlugin);
+        formats.writeEntry(QString::number(textPlugin->getText().second), ui.formatEdit->text());
+        formats.config()->sync();
+    }
 }

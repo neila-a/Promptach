@@ -3,7 +3,8 @@ cmake_minimum_required(VERSION 3.16)
 project(PromptachTexts_path LANGUAGES CXX)
 
 add_library(${TextsPrefix}path SHARED
-    path.cpp
+    replacePath.cpp 
+    path.h
     gitParentPath.cpp
 
     pathAliasTable.ui

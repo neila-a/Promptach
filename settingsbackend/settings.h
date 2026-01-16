@@ -20,8 +20,6 @@ public:
 
     void modifyTextsList(std::function<void(TextsList *list)> modifier);
     const TextsList getTextsList() const;
-
-    static const QString getTextsDir();
 signals:
     void synced();
 };

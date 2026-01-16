@@ -37,13 +37,6 @@ const TextsList Settings::getTextsList() const {
     return got;
 }
 
-const QString Settings::getTextsDir() {
-    QDir binDir = QDir(QCoreApplication::applicationDirPath());
-    binDir.cdUp();
-    binDir.cd("lib/qt-6/plugins/promptach/texts");
-    return binDir.absolutePath() + "/";
-}
-
 void Settings::modifyTextsList(
     std::function<void(TextsList *list)> modifier) {
     TextsList textsList = getTextsList();

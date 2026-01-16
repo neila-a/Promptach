@@ -4,6 +4,7 @@ project(PromptachCore LANGUAGES CXX)
 
 add_executable(Promptach
   main.cpp
+  textinterface.h textloader.h
 
   line/consoleline.h line/consoleline.cpp
   line/consoleside.h line/consoleside.cpp

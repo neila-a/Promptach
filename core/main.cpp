@@ -1,15 +1,16 @@
 #include <QCoreApplication>
 #include <QDir>
-#include <QLibrary>
+#include "textloader.h"
 #include <QTime>
 #include "./line/consoleline.h"
 #include "./line/consoleside.h"
 #include <errno.h>
 #include <promptachcommandlineparser.h>
 #include <settings.h>
+#include "./textinterface.h"
 
 int main(
-    int argc, char *argv[]) {
+    int argc, char* argv[]) {
     QCoreApplication a(argc, argv);
     PromptachCommandLineParser parser;
     parser.process(a);
@@ -17,17 +18,18 @@ int main(
 
     const Settings settings;
     const TextsList textsList = settings.getTextsList();
-    for (const QList<QStringList> &line : textsList) {
+    for (const QList<QStringList>& line : textsList) {
         ConsoleLine consoleLine;
-        for (const QStringList &side : line) {
+        for (const QStringList& side : line) {
             ConsoleSide consoleSide;
             for (QString text : side) {
-                QLibrary library(Settings::getTextsDir() + text + ".so");
-                textFunction _return = (textFunction) library.resolve("entry");
-                if (_return) {
-                    consoleSide.append(_return());
+                TextLoader textLoader(text);
+                QObject* gotTextPlugin = textLoader.instance();
+                if (gotTextPlugin) {
+                    TextInterface* textPlugin = qobject_cast<TextInterface*>(gotTextPlugin);
+                    consoleSide.append(textPlugin->getText());
                 } else {
-                    qCritical().noquote() << library.errorString();
+                    qCritical().noquote() << textLoader.errorString();
                     errorNumber = ELIBACC;
                 }
             }

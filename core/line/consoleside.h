@@ -6,8 +6,6 @@
 #include <settings.h>
 
 typedef std::pair<QString, TextType> coloredText;
-typedef coloredText (*textFunction)();
-typedef void (*configFunction)(QWidget *parent, std::function<void()> synced);
 
 class ConsoleSide : public QList<QPair<QString, TextType>> {
 public:
