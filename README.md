@@ -44,7 +44,7 @@ foo
 ```
 
 When entering `/bar/abs/content`, path will be displayed as `/bar/(abs → /foo)/content`;  
-when entering `/bar/rel/content`, path will be displayed as `/bar/(rel → ../foo)/content`;
+when entering `/bar/rel/content`, path will be displayed as `/bar/(rel → ../foo)/content`.
 
 ### Graphical setting interface
 
