@@ -6,9 +6,11 @@ QString replaceSymbolLink(
     QStringList all = path.split(QDir::separator());
     QString nowPath = base;
     for (QString &nowLevel : all) {
-        QDir nowDir(nowPath);
+        const QDir nowDir(nowPath);
         nowPath += QDir::separator() + nowLevel;
-        const QString nowTarget = nowDir.relativeFilePath(QFile::symLinkTarget(nowPath));
+        const QFileInfo nowPathInfo(nowPath);
+        const QString nowTarget = nowPathInfo.readSymLink();
+
         if (nowTarget != "") {
             nowLevel = QString("(%1 → %2)").arg(nowLevel, nowTarget);
         }

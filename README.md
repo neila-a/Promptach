@@ -6,6 +6,8 @@ A pluggable, highly configurable prompt generator.
 
 ### A brand-new path display
 
+#### Git folders
+
 In Promptach, git branches are no longer displayed outside the path like other prompt generators, but are instead included in the path.  
 Consider this scenario: you are in the `docs` folder on the `main` branch of a git repository located at `~/projects/example`. In other prompt generators, it would typically look like this:
 
@@ -19,20 +21,35 @@ And in Promptach, it will be displayed in a more ergonomic way:
 ~/project/example main docs
 ```
 
-In addition, Promptach also provides settings for path replacement display. In the scenario above, if `projects` is configured to display as `📁`, it will be displayed as follows:
+#### Path replacement
+
+Promptach also provides settings for path replacement display. In the scenario above, if `projects` is configured to display as `📁`, it will be displayed as follows:
 
 ```bash
 ~/📁/example main docs
 ```
 
+#### Path with symbolic links
+
+When entering a path with symbolic links, the symbolic links will be displayed.  
+Consider this scenario:
+
+```bash
+> tree /foo
+foo
+└── content
+> tree /bar
+├── abs -> /foo
+└── rel -> ../foo
+```
+
+When entering `/bar/abs/content`, path will be displayed as `/bar/(abs → /foo)/content`;  
+when entering `/bar/rel/content`, path will be displayed as `/bar/(rel → ../foo)/content`;
+
 ### Graphical setting interface
 
 There are no countless YAML, TOML, or INI files to edit - Promptach provides a clear and intuitive graphical setup interface.  
 Of course, you can still edit directly if you prefer.
-
-<details>
-
-<summary>Technical details</summary>
 
 #### Setting program
 
@@ -41,8 +58,6 @@ Run `PromptachSettings`.
 #### Configuration file location
 
 In `$XDG_CONFIG_DIRS/Promptach`.
-
-</details>
 
 ### Concise display
 
