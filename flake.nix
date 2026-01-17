@@ -17,10 +17,11 @@
         inherit system;
       };
       commonInputs = {
-        nativeBuildInputs = [
-          pkgs.kdePackages.wrapQtAppsHook
-          pkgs.cmake
-          pkgs.ninja
+        nativeBuildInputs = with pkgs; [
+          kdePackages.wrapQtAppsHook
+          cmake
+          ninja
+          gettext
         ];
         buildInputs =
           let

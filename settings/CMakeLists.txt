@@ -2,10 +2,6 @@ cmake_minimum_required(VERSION 3.16)
 
 project(PromptachSettings VERSION 0.1 LANGUAGES CXX)
 
-find_package(KF6Service)
-find_package(KF6Parts)
-find_package(KF6CoreAddons)
-
 set(TS_FILES PromptachSettings_zh_CN.ts)
 
 set(PROJECT_SOURCES
