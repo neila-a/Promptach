@@ -1,7 +1,7 @@
 #include "promptachcommandlineparser.h"
 
 PromptachCommandLineParser::PromptachCommandLineParser() {
-    setApplicationDescription(tr("project", _PROJECT_DESCRIPTION));
+    setApplicationDescription(_PROJECT_DESCRIPTION);
 }
 
 void PromptachCommandLineParser::process(

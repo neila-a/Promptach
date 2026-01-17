@@ -74,6 +74,10 @@ Promptach is not written in shell. It is written in C++.
 nix build
 ```
 
+## Install from cachix
+
+https://promptach.cachix.org/#pull
+
 ## Usage
 
 In the shell, set the environment variable `PROMPT_COMMAND` (not `PS1`) to `Promptach`.  

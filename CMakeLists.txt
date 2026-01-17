@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.16)
 
 set(GLOBAL_PROJECT_NAME "Promptach")
 set(GLOBAL_PROJECT_DESCRIPTION "A pluggable, highly configurable prompt generator.")
-set(GLOBAL_PROJECT_VERSION 0.3.0)
+set(GLOBAL_PROJECT_VERSION 0.4.0)
 
 project(${GLOBAL_PROJECT_NAME}
     LANGUAGES CXX
