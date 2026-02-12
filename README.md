@@ -1,5 +1,7 @@
 # Promptach
 
+English | [中文普通话大陆简体](./README.cmn-Hans-CN.md)
+
 A pluggable, highly configurable prompt generator.
 
 ## Features
@@ -82,3 +84,8 @@ https://promptach.cachix.org/#pull
 
 In the shell, set the environment variable `PROMPT_COMMAND` (not `PS1`) to `Promptach`.  
 Additionally, it will not overwrite `PS1`, which needs to be set manually. It is recommended to set PS1 to `> `.
+
+## Known issues
+
+- Incompatible with [ble.sh](https://github.com/akinomyoga/ble.sh).  
+  No errors will be reported, but there are obvious visual issues, such as unexpected extra line breaks.
