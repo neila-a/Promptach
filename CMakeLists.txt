@@ -39,11 +39,7 @@ set(SETTING_HEADERS "settingsbackend")
 set(CORE_HEADERS "core")
 set(COMMANDLINEPARSER_HEADERS "commandlineparser")
 
-add_subdirectory(${CORE_HEADERS})
-add_subdirectory(settings)
-add_subdirectory(${SETTING_HEADERS})
-add_subdirectory(${COMMANDLINEPARSER_HEADERS})
-add_subdirectory(texts)
+add_subdirectory(src)
 
 install(TARGETS Promptach PromptachSettings PromptachSettingsBackend PromptachCommandLineParser
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}

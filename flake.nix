@@ -68,7 +68,7 @@
           };
 
           patchPhase = ''
-            lrelease ./settings/PromptachSettings_zh_CN.ts -qm ./settings/PromptachSettings_zh_CN.qm
+            lrelease ./src/settings/PromptachSettings_zh_CN.ts -qm ./src/settings/PromptachSettings_zh_CN.qm
           '';
 
           installPhase = ''

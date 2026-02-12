@@ -1,0 +1,5 @@
+add_subdirectory(${CORE_HEADERS})
+add_subdirectory(settings)
+add_subdirectory(${SETTING_HEADERS})
+add_subdirectory(${COMMANDLINEPARSER_HEADERS})
+add_subdirectory(texts)
