@@ -27,6 +27,7 @@ void SettingsWindow::initTextsView() {
         model->appendRow(thisLineItem);
     }
     ui.textsView->setModel(model);
+    ui.textsView->expandAll();
 }
 
 void SettingsWindow::on_textsView_clicked(
