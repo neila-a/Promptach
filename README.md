@@ -1,8 +1,12 @@
 # Promptach
 
-English | [中文普通话大陆简体](./README.cmn-Hans-CN.md)
+English | [中文普通话大陆简体](./docs/README.cmn-Hans-CN.md)
 
 A pluggable, highly configurable prompt generator.
+
+## Effect
+
+![Effect drawing](./docs/assets/effect_drawing.png)
 
 ## Features
 
@@ -64,7 +68,8 @@ In `$XDG_CONFIG_DIRS/Promptach`.
 ### Concise display
 
 No rounded corners, no background colors - just plain text paired with carefully blended foreground colors.  
-The always-available right prompt - in Promptach, the right prompt is implemented by detecting the console width and is not dependent on a specific shell.
+The always-available right prompt - in Promptach, the right prompt is implemented by detecting the console width and is not dependent on a specific shell.  
+If you want, the number of texts is not limited to left and right: the middle prompt or more are also supported.
 
 ### Fast speed
 
