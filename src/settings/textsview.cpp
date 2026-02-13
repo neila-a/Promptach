@@ -2,7 +2,7 @@
 #include <textloader.h>
 #include <QStandardItem>
 #include <QDir>
-#include "settingswindow.h"
+#include "promptachsettings.h"
 #include <line/consoleside.h>
 #include <textinterface.h>
 

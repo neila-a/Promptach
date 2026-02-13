@@ -1,4 +1,4 @@
-#include "settingswindow.h"
+#include "promptachsettings.h"
 
 PromptachSettings::PromptachSettings(
     QWidget *parent)

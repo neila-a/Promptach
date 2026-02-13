@@ -1,4 +1,4 @@
-#include "settingswindow.h"
+#include "promptachsettings.h"
 
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>

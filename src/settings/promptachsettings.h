@@ -1,7 +1,7 @@
 #ifndef SETTINGSWINDOW_H
 #define SETTINGSWINDOW_H
 
-#include "./ui_settingswindow.h"
+#include "./ui_promptachsettings.h"
 
 #include <QMainWindow>
 #include <settings.h>

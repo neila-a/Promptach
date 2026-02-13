@@ -1,4 +1,4 @@
-#include "settingswindow.h"
+#include "promptachsettings.h"
 
 void PromptachSettings::on_addLine_clicked() {
     return settings.modifyTextsList(
