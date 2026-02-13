@@ -7,7 +7,7 @@ set(TS_FILES PromptachSettings_zh_CN.ts)
 set(PROJECT_SOURCES
     main.cpp
 
-    promptachsettings.cpp promptachsettings.h settingswindow.ui
+    promptachsettings.cpp promptachsettings.h promptachsettings.ui
     ${TS_FILES}
 )
 
