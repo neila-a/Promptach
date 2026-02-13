@@ -7,7 +7,7 @@ set(TS_FILES PromptachSettings_zh_CN.ts)
 set(PROJECT_SOURCES
     main.cpp
 
-    settingswindow.cpp settingswindow.h settingswindow.ui
+    promptachsettings.cpp promptachsettings.h settingswindow.ui
     ${TS_FILES}
 )
 
@@ -24,6 +24,7 @@ qt_add_executable(PromptachSettings
 target_include_directories(PromptachSettings PRIVATE ../${SETTING_HEADERS} ../${COMMANDLINEPARSER_HEADERS} ../${CORE_HEADERS})
 target_link_libraries(PromptachSettings PRIVATE
     Qt${QT_VERSION_MAJOR}::Widgets
+    Qt${QT_VERSION_MAJOR}::Quick
 
     PromptachSettingsBackend
     PromptachCommandLineParser

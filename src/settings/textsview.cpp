@@ -8,7 +8,7 @@
 
 typedef QList<QWidget*> QWidgetList;
 
-void SettingsWindow::initTextsView() {
+void PromptachSettings::initTextsView() {
     const TextsList textsList = settings.getTextsList();
     QStandardItemModel* model = new QStandardItemModel;
     for (qsizetype lineIndex = 0; lineIndex < textsList.size(); lineIndex++) {
@@ -31,7 +31,7 @@ void SettingsWindow::initTextsView() {
     ui.textsView->setHeaderHidden(true);
 }
 
-void SettingsWindow::on_textsView_clicked(
+void PromptachSettings::on_textsView_clicked(
     const QModelIndex& index) {
     /*
      * 0: line
@@ -72,7 +72,7 @@ void SettingsWindow::on_textsView_clicked(
     }
 }
 
-void SettingsWindow::recreateConfigWidget() {
+void PromptachSettings::recreateConfigWidget() {
     delete ui.configWidget;
     ui.configWidget = new QWidget(ui.centralwidget);
     ui.configWidget->setObjectName("configWidget");
@@ -80,7 +80,7 @@ void SettingsWindow::recreateConfigWidget() {
     ui.verticalLayout_5->insertWidget(2, ui.configWidget);
 }
 
-void SettingsWindow::initFormatEdit() {
+void PromptachSettings::initFormatEdit() {
     TextLoader textLoader(ui.sourceEdit->text());
     QObject* gotTextPlugin = textLoader.instance();
     if (gotTextPlugin) {
@@ -93,7 +93,7 @@ void SettingsWindow::initFormatEdit() {
     ui.formatEdit->setEnabled(textLoader.isLoaded());
 }
 
-void SettingsWindow::on_sourceEdit_editingFinished() {
+void PromptachSettings::on_sourceEdit_editingFinished() {
     settings.modifyTextsList([this](TextsList* list) -> void {
         QList<QStringList> thisLine = list->at(pos.at(0));
         QStringList thisSide = thisLine.at(pos.at(1));
@@ -106,7 +106,7 @@ void SettingsWindow::on_sourceEdit_editingFinished() {
     return initFormatEdit();
 }
 
-void SettingsWindow::on_formatEdit_editingFinished() {
+void PromptachSettings::on_formatEdit_editingFinished() {
     KConfigGroup formats(&settings, "format");
     /*
      * It must be loadable because if it isn't loadable it will not be edited.

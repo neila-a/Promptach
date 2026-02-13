@@ -1,15 +1,15 @@
 #include "settingswindow.h"
 
-void SettingsWindow::on_addLine_clicked() {
+void PromptachSettings::on_addLine_clicked() {
     return settings.modifyTextsList(
         [](TextsList *list) -> void { list->append(QList{{QStringList{}}}); });
 }
 
-void SettingsWindow::on_removeLine_clicked() {
+void PromptachSettings::on_removeLine_clicked() {
     return settings.modifyTextsList([this](TextsList *list) -> void { list->remove(pos.at(0)); });
 }
 
-void SettingsWindow::on_addSide_clicked() {
+void PromptachSettings::on_addSide_clicked() {
     return settings.modifyTextsList([this](TextsList *list) -> void {
         QList<QStringList> thisLine = list->at(pos.at(0));
 
@@ -19,7 +19,7 @@ void SettingsWindow::on_addSide_clicked() {
     });
 }
 
-void SettingsWindow::on_removeSide_clicked() {
+void PromptachSettings::on_removeSide_clicked() {
     return settings.modifyTextsList([this](TextsList *list) -> void {
         QList<QStringList> thisLine = list->at(pos.at(0));
 
@@ -29,7 +29,7 @@ void SettingsWindow::on_removeSide_clicked() {
     });
 }
 
-void SettingsWindow::on_addText_clicked() {
+void PromptachSettings::on_addText_clicked() {
     return settings.modifyTextsList([this](TextsList *list) -> void {
         QList<QStringList> thisLine = list->at(pos.at(0));
         QStringList thisSide = thisLine.at(pos.at(1));
@@ -41,7 +41,7 @@ void SettingsWindow::on_addText_clicked() {
     });
 }
 
-void SettingsWindow::on_removeText_clicked() {
+void PromptachSettings::on_removeText_clicked() {
     return settings.modifyTextsList([this](TextsList *list) -> void {
         QList<QStringList> thisLine = list->at(pos.at(0));
         QStringList thisSide = thisLine.at(pos.at(1));

@@ -1,16 +1,16 @@
 #include "settingswindow.h"
 
-SettingsWindow::SettingsWindow(
+PromptachSettings::PromptachSettings(
     QWidget *parent)
     : QMainWindow(parent) {
     ui.setupUi(this);
     initTextsView();
-    connect(&settings, &Settings::synced, this, &SettingsWindow::updatePreviewer);
+    connect(&settings, &Settings::synced, this, &PromptachSettings::updatePreviewer);
 }
 
-SettingsWindow::~SettingsWindow() {}
+PromptachSettings::~PromptachSettings() {}
 
-const int SettingsWindow::locatePreviewer() const {
+const int PromptachSettings::locatePreviewer() const {
     int index;
     for (int i = 0; i < ui.verticalLayout->count(); i++) {
         QLayoutItem *item = ui.verticalLayout->itemAt(i);
@@ -23,7 +23,7 @@ const int SettingsWindow::locatePreviewer() const {
     return index;
 }
 
-void SettingsWindow::updatePreviewer() {
+void PromptachSettings::updatePreviewer() {
     const int index = locatePreviewer();
 
     ui.verticalLayout->removeWidget(ui.previewer);

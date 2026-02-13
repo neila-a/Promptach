@@ -6,12 +6,12 @@
 #include <QMainWindow>
 #include <settings.h>
 
-class SettingsWindow : public QMainWindow {
+class PromptachSettings : public QMainWindow {
     Q_OBJECT
 
 public:
-    SettingsWindow(QWidget *parent = nullptr);
-    ~SettingsWindow();
+    PromptachSettings(QWidget *parent = nullptr);
+    ~PromptachSettings();
 
 private slots:
     void updatePreviewer();
@@ -30,7 +30,7 @@ private slots:
     void on_formatEdit_editingFinished();
 
 private:
-    Ui::SettingsWindow ui;
+    Ui::PromptachSettings ui;
 
     void initTextsView();
     void initFormatEdit();

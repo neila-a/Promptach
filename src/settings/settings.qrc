@@ -1,5 +1,9 @@
+<!DOCTYPE RCC>
 <RCC>
-    <qresource prefix="/i18n">
-        <file>PromptachSettings_zh_CN.qm</file>
-    </qresource>
+  <qresource prefix="/i18n">
+    <file>PromptachSettings_zh_CN.qm</file>
+  </qresource>
+  <qresource prefix="/ui">
+    <file>main.qml</file>
+  </qresource>
 </RCC>
