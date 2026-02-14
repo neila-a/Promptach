@@ -16,7 +16,7 @@ public:
     const QString replacePath(QString path) const;
     bool sync() override;
     // format
-    const QString operator[](TextType) const;
+    const QString operator[](TextType textType) const;
 
     void modifyTextsList(std::function<void(TextsList *list)> modifier);
     const TextsList getTextsList() const;

@@ -82,10 +82,10 @@ void SettingsWindow::recreateConfigWidget() {
 void SettingsWindow::initFormatEdit() {
     TextLoader textLoader(ui.sourceEdit->text());
     QObject* gotTextPlugin = textLoader.instance();
+    recreateConfigWidget();
     if (gotTextPlugin) {
         TextInterface* textPlugin = qobject_cast<TextInterface*>(gotTextPlugin);
         ui.formatEdit->setText(settings[textPlugin->getText().second]);
-        recreateConfigWidget();
         textPlugin->drawConfigInterface(ui.configWidget, [this]() -> void { updatePreviewer(); });
         ui.configWidget->show();
     }
