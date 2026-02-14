@@ -15,7 +15,6 @@ qt_add_executable(PromptachSettings
     MANUAL_FINALIZATION
     ${PROJECT_SOURCES}
 
-    previewer.h previewer.cpp
     settings.qrc
     textsview.cpp
     textsview_buttons.cpp
@@ -26,11 +25,8 @@ target_link_libraries(PromptachSettings PRIVATE
     Qt${QT_VERSION_MAJOR}::Widgets
 
     PromptachSettingsBackend
+    PromptachCore
     PromptachCommandLineParser
-
-    KF6::Service
-    KF6::Parts
-    KF6::CoreAddons
 )
 
 set_target_properties(PromptachSettings PROPERTIES

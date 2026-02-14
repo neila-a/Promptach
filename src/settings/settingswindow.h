@@ -38,7 +38,6 @@ private:
     void recreateConfigWidget();
 
     QList<int> pos;
-    const int locatePreviewer() const;
     Settings settings;
 };
 

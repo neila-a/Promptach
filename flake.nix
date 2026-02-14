@@ -32,9 +32,7 @@
               libGLU
             ];
             kdePackages = with pkgs.kdePackages; [
-              kcoreaddons
-              kservice
-              kparts
+              kconfig
               qtbase
               qttools
             ];

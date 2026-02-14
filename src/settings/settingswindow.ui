@@ -26,7 +26,8 @@
      </widget>
     </item>
     <item>
-     <widget class="Previewer" name="previewer" native="true"/>
+     <widget class="QLabel" name="previewer">
+     </widget>
     </item>
     <item>
      <layout class="QHBoxLayout" name="textsLayout">
@@ -199,14 +200,6 @@
    </layout>
   </widget>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>Previewer</class>
-   <extends>QWidget</extends>
-   <header>../../../../../src/settings/previewer.h</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>
