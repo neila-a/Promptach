@@ -19,7 +19,7 @@ public:
     const QString operator[](TextType) const;
 
     void modifyTextsList(std::function<void(TextsList *list)> modifier);
-    const TextsList getTextsList() const;
+    Q_INVOKABLE const TextsList getTextsList() const;
 signals:
     void synced();
 };

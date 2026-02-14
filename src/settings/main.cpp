@@ -4,6 +4,7 @@
 #include <QQmlApplicationEngine>
 #include <QLocale>
 #include <QTranslator>
+#include <QQmlContext>
 #include <promptachcommandlineparser.h>
 
 int main(
@@ -32,6 +33,8 @@ int main(
             if (!obj && url == objUrl)
                 QCoreApplication::exit(-1);
         }, Qt::QueuedConnection);
+    Settings settings;
+    engine.rootContext()->setContextProperty("settings", &settings);
     engine.load(url);
 
     return a.exec();

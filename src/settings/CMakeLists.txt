@@ -16,7 +16,7 @@ qt_add_executable(PromptachSettings
     ${PROJECT_SOURCES}
 
     previewer.h previewer.cpp
-    settings.qrc
+    main.qrc
     textsview.cpp
     textsview_buttons.cpp
 )

@@ -58,7 +58,7 @@
 
         pkgs.stdenv.mkDerivation {
           pname = "promptach";
-          version = "0.4.0";
+          version = "0.4.0.0214.1146";
 
           inherit (commonInputs) nativeBuildInputs buildInputs;
 
