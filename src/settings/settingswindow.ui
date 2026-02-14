@@ -26,8 +26,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QLabel" name="previewer">
-     </widget>
+     <widget class="QLabel" name="previewer"/>
     </item>
     <item>
      <layout class="QHBoxLayout" name="textsLayout">
@@ -99,92 +98,110 @@
          </spacer>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout">
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
           <item>
-           <widget class="QPushButton" name="addLine">
-            <property name="text">
-             <string>添加行</string>
-            </property>
-            <property name="icon">
-             <iconset theme="QIcon::ThemeIcon::ContactNew"/>
-            </property>
-           </widget>
+           <layout class="QVBoxLayout" name="verticalLayout_2">
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout">
+              <item>
+               <widget class="QPushButton" name="addLine">
+                <property name="text">
+                 <string>添加行</string>
+                </property>
+                <property name="icon">
+                 <iconset theme="QIcon::ThemeIcon::ContactNew"/>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="addSide">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="text">
+                 <string>添加边</string>
+                </property>
+                <property name="icon">
+                 <iconset theme="QIcon::ThemeIcon::ContactNew"/>
+                </property>
+                <property name="checkable">
+                 <bool>false</bool>
+                </property>
+                <property name="checked">
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="addText">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="text">
+                 <string>添加文本</string>
+                </property>
+                <property name="icon">
+                 <iconset theme="QIcon::ThemeIcon::ContactNew"/>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayo3ut">
+              <item>
+               <widget class="QPushButton" name="removeLine">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="text">
+                 <string>移除行</string>
+                </property>
+                <property name="icon">
+                 <iconset theme="QIcon::ThemeIcon::EditDelete"/>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="removeSide">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="text">
+                 <string>移除边</string>
+                </property>
+                <property name="icon">
+                 <iconset theme="QIcon::ThemeIcon::EditDelete"/>
+                </property>
+                <property name="checkable">
+                 <bool>false</bool>
+                </property>
+                <property name="checked">
+                 <bool>false</bool>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="removeText">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="text">
+                 <string>移除文本</string>
+                </property>
+                <property name="icon">
+                 <iconset theme="QIcon::ThemeIcon::EditDelete"/>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
           </item>
           <item>
-           <widget class="QPushButton" name="addSide">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
+           <widget class="QPushButton" name="resetButton">
             <property name="text">
-             <string>添加边</string>
-            </property>
-            <property name="icon">
-             <iconset theme="QIcon::ThemeIcon::ContactNew"/>
-            </property>
-            <property name="checkable">
-             <bool>false</bool>
-            </property>
-            <property name="checked">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="addText">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="text">
-             <string>添加文本</string>
-            </property>
-            <property name="icon">
-             <iconset theme="QIcon::ThemeIcon::ContactNew"/>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayo3ut">
-          <item>
-           <widget class="QPushButton" name="removeLine">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="text">
-             <string>移除行</string>
-            </property>
-            <property name="icon">
-             <iconset theme="QIcon::ThemeIcon::EditDelete"/>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="removeSide">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="text">
-             <string>移除边</string>
-            </property>
-            <property name="icon">
-             <iconset theme="QIcon::ThemeIcon::EditDelete"/>
-            </property>
-            <property name="checkable">
-             <bool>false</bool>
-            </property>
-            <property name="checked">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="removeText">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="text">
-             <string>移除文本</string>
+             <string>重置所有设置</string>
             </property>
             <property name="icon">
              <iconset theme="QIcon::ThemeIcon::EditDelete"/>

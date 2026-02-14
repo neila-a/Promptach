@@ -30,8 +30,24 @@ void SettingsWindow::initTextsView() {
     ui.textsView->expandAll();
 }
 
-void SettingsWindow::on_textsView_clicked(
-    const QModelIndex& index) {
+void SettingsWindow::processDisables(int level) {
+    /*
+     * It can't be place in constructor because pointer of widgets will have change.
+     */
+    const QList<QWidgetList> all = { {ui.removeLine, ui.addSide},
+                                    {ui.removeSide, ui.addText, ui.removeText},
+                                    {ui.removeText, ui.sourceEdit, ui.formatEdit, ui.configWidget} };
+    for (qsizetype i = 0; i < all.size(); i++) if (i <= level) {
+        for (QWidget* toEnable : all.at(i)) toEnable->setEnabled(true);
+        if (i < 2) for (QWidget* toDisable : all.at(i + 1)) toDisable->setEnabled(false);
+    }
+    if (level == 2) {
+        ui.sourceEdit->setText(settings.getTextsList().at(pos.at(0)).at(pos.at(1)).at(pos.at(2)));
+        initFormatEdit();
+    } else recreateConfigWidget();
+}
+
+void SettingsWindow::on_textsView_clicked(const QModelIndex& index) {
     /*
      * 0: line
      * 1: side
@@ -47,28 +63,7 @@ void SettingsWindow::on_textsView_clicked(
         level++;
     }
     pos = _pos;
-
-    /*
-     * It can't be place in constructor because pointer of widgets will have change.
-     */
-    const QList<QWidgetList> all = { {ui.removeLine, ui.addSide},
-                                    {ui.removeSide, ui.addText, ui.removeText},
-                                    {ui.removeText, ui.sourceEdit, ui.formatEdit, ui.configWidget} };
-    for (qsizetype i = 0; i < all.size(); i++)
-        if (i <= level) {
-            for (QWidget* enable : all.at(i))
-                enable->setEnabled(true);
-            if (i < 2)
-                for (QWidget* disable : all.at(i + 1))
-                    disable->setEnabled(false);
-        }
-
-    if (level == 2) {
-        ui.sourceEdit->setText(settings.getTextsList().at(pos.at(0)).at(pos.at(1)).at(pos.at(2)));
-        initFormatEdit();
-    } else {
-        recreateConfigWidget();
-    }
+    processDisables(level);
 }
 
 void SettingsWindow::recreateConfigWidget() {
@@ -110,8 +105,7 @@ void SettingsWindow::on_formatEdit_editingFinished() {
     /*
      * It must be loadable because if it isn't loadable it will not be edited.
      */
-
-    QPluginLoader textLoader("promptach/texts" + ui.sourceEdit->text());
+    TextLoader textLoader(ui.sourceEdit->text());
     QObject* gotTextPlugin = textLoader.instance();
     if (gotTextPlugin) {
         TextInterface* textPlugin = qobject_cast<TextInterface*>(gotTextPlugin);

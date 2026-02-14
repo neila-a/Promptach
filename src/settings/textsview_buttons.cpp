@@ -2,35 +2,35 @@
 
 void SettingsWindow::on_addLine_clicked() {
     return settings.modifyTextsList(
-        [](TextsList *list) -> void { list->append(QList{{QStringList{}}}); });
+        [](TextsList* list) -> void { list->append(QList{ {QStringList{}} }); });
 }
 
 void SettingsWindow::on_removeLine_clicked() {
-    return settings.modifyTextsList([this](TextsList *list) -> void { list->remove(pos.at(0)); });
+    return settings.modifyTextsList([this](TextsList* list) -> void { list->remove(pos.at(0)); });
 }
 
 void SettingsWindow::on_addSide_clicked() {
-    return settings.modifyTextsList([this](TextsList *list) -> void {
+    return settings.modifyTextsList([this](TextsList* list) -> void {
         QList<QStringList> thisLine = list->at(pos.at(0));
 
         thisLine.append(QStringList{});
 
         list->replace(pos.at(0), thisLine);
-    });
+        });
 }
 
 void SettingsWindow::on_removeSide_clicked() {
-    return settings.modifyTextsList([this](TextsList *list) -> void {
+    return settings.modifyTextsList([this](TextsList* list) -> void {
         QList<QStringList> thisLine = list->at(pos.at(0));
 
         thisLine.remove(pos.at(1));
 
         list->replace(pos.at(0), thisLine);
-    });
+        });
 }
 
 void SettingsWindow::on_addText_clicked() {
-    return settings.modifyTextsList([this](TextsList *list) -> void {
+    return settings.modifyTextsList([this](TextsList* list) -> void {
         QList<QStringList> thisLine = list->at(pos.at(0));
         QStringList thisSide = thisLine.at(pos.at(1));
 
@@ -38,11 +38,11 @@ void SettingsWindow::on_addText_clicked() {
 
         thisLine.replace(pos.at(1), thisSide);
         list->replace(pos.at(0), thisLine);
-    });
+        });
 }
 
 void SettingsWindow::on_removeText_clicked() {
-    return settings.modifyTextsList([this](TextsList *list) -> void {
+    return settings.modifyTextsList([this](TextsList* list) -> void {
         QList<QStringList> thisLine = list->at(pos.at(0));
         QStringList thisSide = thisLine.at(pos.at(1));
 
@@ -50,5 +50,14 @@ void SettingsWindow::on_removeText_clicked() {
 
         thisLine.replace(pos.at(1), thisSide);
         list->replace(pos.at(0), thisLine);
-    });
+        });
+}
+
+
+void SettingsWindow::on_resetButton_clicked() {
+    const QStringList groups = settings.groupList();
+    for (const QString& group : groups) {
+        settings.deleteGroup(group);
+    }
+    settings.sync();
 }

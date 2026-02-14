@@ -24,9 +24,9 @@ private slots:
     void on_removeSide_clicked();
     void on_addText_clicked();
     void on_removeText_clicked();
+    void on_resetButton_clicked();
 
     void on_sourceEdit_editingFinished();
-
     void on_formatEdit_editingFinished();
 
 private:
@@ -34,6 +34,7 @@ private:
 
     void initTextsView();
     void initFormatEdit();
+    void processDisables(int level);
 
     void recreateConfigWidget();
 
