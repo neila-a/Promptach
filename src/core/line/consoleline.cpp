@@ -1,4 +1,5 @@
 #include "consoleline.h"
+#include <QTextStream>
 
 ConsoleLine::ConsoleLine() {}
 
@@ -22,13 +23,12 @@ const unsigned short ConsoleLine::consoleWidth() const {
 #endif
 }
 
-const void ConsoleLine::write() const {
-    QTextStream stream(stdout);
+const void ConsoleLine::write(QTextStream* stream) const {
     for (qsizetype i = 0; i < size(); i++) {
-        stream << at(i).toString();
+        *stream << at(i).toString();
         if (i < size() - 1)
-            stream << QStringLiteral(" ").repeated(space() / (length() - 1));
+            *stream << QStringLiteral(" ").repeated(space() / (length() - 1));
     }
-    stream.flush();
+    stream->flush();
     return;
 }

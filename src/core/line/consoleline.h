@@ -8,7 +8,7 @@
 class ConsoleLine : public QList<ConsoleSide> {
 public:
     ConsoleLine();
-    const void write() const;
+    const void write(QTextStream* stream) const;
 
 private:
     const unsigned short space() const;

@@ -1,19 +1,14 @@
-#include <QCoreApplication>
 #include <QDir>
 #include "textloader.h"
 #include <QTime>
 #include "./line/consoleline.h"
 #include "./line/consoleside.h"
 #include <errno.h>
-#include <promptachcommandlineparser.h>
 #include <settings.h>
 #include "./textinterface.h"
+#include "write.h"
 
-int main(
-    int argc, char* argv[]) {
-    QCoreApplication a(argc, argv);
-    PromptachCommandLineParser parser;
-    parser.process(a);
+int write(QTextStream* stream) {
     int errorNumber = 0;
 
     const Settings settings;
@@ -35,7 +30,7 @@ int main(
             }
             consoleLine.append(consoleSide);
         }
-        consoleLine.write();
+        consoleLine.write(stream);
     }
 
     return errorNumber;
