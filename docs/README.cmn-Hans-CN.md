@@ -94,4 +94,5 @@ https://promptach.cachix.org/#pull
 
 - 与[ble.sh](https://github.com/akinomyoga/ble.sh)不兼容。  
   不会报错，但存在明显的视觉问题，例如预期之外的额外换行。
-  
+- 设置程序中ANSI颜色被直接显示。
+- 设置程序中经常出现更改没有及时显示，需要重启。

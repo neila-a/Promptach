@@ -94,3 +94,5 @@ Additionally, it will not overwrite `PS1`, which needs to be set manually. It is
 
 - Incompatible with [ble.sh](https://github.com/akinomyoga/ble.sh).  
   No errors will be reported, but there are obvious visual issues, such as unexpected extra line breaks.
+- ANSI colors are displayed directly in the program.
+- Changes often occur in the settings program that are not displayed in a timely manner and require a restart.
