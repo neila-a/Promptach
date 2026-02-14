@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Promptach设置</string>
   </property>
+  <property name="windowIcon">
+   <iconset theme="akonadiconsole"/>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
@@ -34,6 +37,9 @@
         </property>
         <property name="editTriggers">
          <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+        </property>
+        <property name="headerHidden">
+         <bool>true</bool>
         </property>
        </widget>
       </item>

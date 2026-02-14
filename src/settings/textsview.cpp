@@ -28,7 +28,6 @@ void SettingsWindow::initTextsView() {
     }
     ui.textsView->setModel(model);
     ui.textsView->expandAll();
-    ui.textsView->setHeaderHidden(true);
 }
 
 void SettingsWindow::on_textsView_clicked(
