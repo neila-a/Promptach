@@ -11,7 +11,7 @@
     <message>
         <location filename="settingswindow.ui" line="21"/>
         <source>预览</source>
-        <translation>预览</translation>
+        <translation>预览x</translation>
     </message>
     <message>
         <location filename="settingswindow.ui" line="43"/>

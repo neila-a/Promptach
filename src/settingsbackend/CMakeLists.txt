@@ -8,4 +8,4 @@ add_library(PromptachSettingsBackend STATIC
   settings.h
 )
 
-target_link_libraries(PromptachSettingsBackend PUBLIC Qt${QT_VERSION_MAJOR}::Core KF6::ConfigCore)
+target_link_libraries(PromptachSettingsBackend PUBLIC Qt6::Core KF6::ConfigCore)

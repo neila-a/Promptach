@@ -1,4 +1,9 @@
 cmake_minimum_required(VERSION 3.16)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_CXX_STANDARD 26)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Project
 
@@ -13,22 +18,19 @@ project(${GLOBAL_PROJECT_NAME}
     HOMEPAGE_URL "https://github.com/neila-a/Promptach"
 )
 
-
-set(CMAKE_AUTOUIC ON)
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
+# Dependencies
 
 set(CMAKE_INSTALL_PREFIX ./install)
-
-set(CMAKE_CXX_STANDARD 23)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-find_package(QT NAMES Qt6 REQUIRED COMPONENTS Core Widgets LinguistTools)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Widgets LinguistTools)
-find_package(KF6Config)
-
-include(GNUInstallDirs)
+find_package(ECM REQUIRED NO_MODULE)
+set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
+include(KDEInstallDirs)
+include(GNUInstallDirs) # GNU must after KDE
 set(CMAKE_INSTALL_LIBDIR lib)
+
+find_package(QT NAMES Qt6 REQUIRED COMPONENTS Core Widgets LinguistTools Quick)
+find_package(Qt6 REQUIRED COMPONENTS Core Widgets LinguistTools Quick)
+find_package(KF6Config)
+find_package(KF6KCMUtils)
 
 # Executable
 
@@ -38,7 +40,7 @@ set(COMMANDLINEPARSER_HEADERS "commandlineparser")
 
 add_subdirectory(src)
 
-install(TARGETS Promptach PromptachSettings PromptachSettingsBackend PromptachCommandLineParser
+install(TARGETS Promptach PromptachSettingsBackend PromptachCommandLineParser
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )

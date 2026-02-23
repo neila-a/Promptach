@@ -34,7 +34,9 @@
             kdePackages = with pkgs.kdePackages; [
               kconfig
               qtbase
+              kcmutils
               qttools
+              extra-cmake-modules
             ];
           in
           normalPackages ++ kdePackages;

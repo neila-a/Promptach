@@ -8,7 +8,7 @@ add_library(PromptachCommandLineParser STATIC
   promptachcommandlineparser.h
 )
 
-target_link_libraries(PromptachCommandLineParser PRIVATE Qt${QT_VERSION_MAJOR}::Core)
+target_link_libraries(PromptachCommandLineParser PRIVATE Qt6::Core)
 
 target_compile_definitions(PromptachCommandLineParser PRIVATE
     PROMPTACHCOMMANDLINEPARSER_LIBRARY

@@ -1,0 +1,17 @@
+{
+    "KPlugin": {
+        "Description": "Configure Promptach",
+        "Description[zh_CN]": "配置Promptach",
+        "FormFactors": [
+            "desktop",
+            "handset",
+            "tablet",
+            "mediacenter"
+        ],
+        "Icon": "akonadiconsole",
+        "Name[zh_CN]": "Promptach设置"
+    },
+    "X-KDE-Keywords": "Konsole,Terminal,Promptach",
+    "X-KDE-Keywords[zh_CN]": "终端",
+    "X-KDE-System-Settings-Parent-Category": "personalization"
+}
