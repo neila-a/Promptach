@@ -3,7 +3,7 @@
 
 ConsoleLine::ConsoleLine() {}
 
-const unsigned short ConsoleLine::space() const {
+unsigned short ConsoleLine::space() const {
     unsigned short _space = consoleWidth();
     for (qsizetype i = 0; i < size(); i++)
         _space -= at(i).totalLength();
@@ -13,7 +13,7 @@ const unsigned short ConsoleLine::space() const {
 #ifdef Q_OS_UNIX
 #include <sys/ioctl.h>
 #endif
-const unsigned short ConsoleLine::consoleWidth() const {
+unsigned short ConsoleLine::consoleWidth() const {
 #ifdef Q_OS_UNIX
     struct winsize size;
     ioctl(0, TIOCGWINSZ, &size);
@@ -23,7 +23,7 @@ const unsigned short ConsoleLine::consoleWidth() const {
 #endif
 }
 
-const void ConsoleLine::write(QTextStream* stream) const {
+void ConsoleLine::write(QTextStream* stream) const {
     for (qsizetype i = 0; i < size(); i++) {
         *stream << at(i).toString();
         if (i < size() - 1)

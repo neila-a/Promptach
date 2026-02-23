@@ -25,7 +25,10 @@ find_package(ECM REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 include(KDEInstallDirs)
 include(GNUInstallDirs) # GNU must after KDE
+include(KDECompilerSettings NO_POLICY_SCOPE)
+#include(KDECMakeSettings NO_POLICY_SCOPE) # will cause broken
 set(CMAKE_INSTALL_LIBDIR lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY lib)
 
 find_package(QT NAMES Qt6 REQUIRED COMPONENTS Core Widgets LinguistTools Quick)
 find_package(Qt6 REQUIRED COMPONENTS Core Widgets LinguistTools Quick)

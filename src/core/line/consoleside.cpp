@@ -2,7 +2,7 @@
 
 ConsoleSide::ConsoleSide() {}
 
-const qsizetype ConsoleSide::totalLength() const {
+qsizetype ConsoleSide::totalLength() const {
     qsizetype length = 0;
     for (qsizetype i = 0; i < size(); i++)
         length += at(i).first.length() + 1;

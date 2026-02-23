@@ -11,7 +11,7 @@ class GitBranch : public QObject, public TextInterface {
     Q_PLUGIN_METADATA(IID TextInterface_iid);
 
 public:
-    coloredText getText() {
+    coloredText getText() override {
         const bool isGit = isInGit();
         QString branch = isGit ? run("git", { "branch", "--show-current" }).trimmed() : "";
         return { branch, GITBRANCH };

@@ -13,12 +13,12 @@ class Path : public QObject, public TextInterface {
     Q_INTERFACES(TextInterface);
 
 public:
-    coloredText getText() {
+    coloredText getText() override {
         QString string = replaceSymbolLink("", gitParentPath());
         Settings settings;
         return { settings.replacePath(string), PATH };
     };
-    void drawConfigInterface(QWidget* parent, std::function<void()> synced) {
+    void drawConfigInterface(QWidget* parent, std::function<void()> synced) override {
         QHBoxLayout* layout = new QHBoxLayout;
         layout->setContentsMargins(0, 0, 0, 0);
 

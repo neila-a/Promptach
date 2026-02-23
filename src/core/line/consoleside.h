@@ -11,7 +11,7 @@ class ConsoleSide : public QList<QPair<QString, TextType>> {
 public:
     ConsoleSide();
     const QString toString() const;
-    const qsizetype totalLength() const;
+    qsizetype totalLength() const;
 };
 
 #endif // CONSOLESIDE_H

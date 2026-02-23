@@ -15,14 +15,14 @@ class Time : public QObject, public TextInterface {
     Q_INTERFACES(TextInterface);
 
 public:
-    coloredText getText() {
+    coloredText getText() override {
         const QTime time = QTime::currentTime();
         const Settings settings;
         const KConfigGroup generalGroup(&settings, QStringLiteral("General"));
         const QString timeFormat = generalGroup.readEntry("timeFormat", "HH:mm");
         return { time.toString(timeFormat), TIME };
     };
-    void drawConfigInterface(QWidget* parent, std::function<void()> synced) {
+    void drawConfigInterface(QWidget* parent, std::function<void()> synced) override {
         QHBoxLayout* layout = new QHBoxLayout;
         layout->setContentsMargins(0, 0, 0, 0);
 

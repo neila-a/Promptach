@@ -4,9 +4,10 @@
 #include <QCoreApplication>
 
 Settings::Settings(
-    KConfig *parent)
-    : KConfig("Promptach")
-    , QObject() {}
+    KConfig* parent)
+    : QObject(), KConfig("Promptach") {
+    Q_UNUSED(parent);
+}
 
 const QString Settings::operator[](
     TextType type) const {
@@ -24,8 +25,8 @@ bool Settings::sync() {
 
 const TextsList Settings::getTextsList() const {
     const KConfigGroup generalGroup(this, QStringLiteral("General"));
-    const TextsList defaultTextsList = {{QStringList{"path", "gitBranch", "gitChildPath"},
-                                         QStringList{"username", "time"}}};
+    const TextsList defaultTextsList = { {QStringList{"path", "gitBranch", "gitChildPath"},
+                                         QStringList{"username", "time"}} };
 
     QByteArray out;
     QDataStream outStream(&out, QIODevice::WriteOnly);
@@ -38,7 +39,7 @@ const TextsList Settings::getTextsList() const {
 }
 
 void Settings::modifyTextsList(
-    std::function<void(TextsList *list)> modifier) {
+    std::function<void(TextsList* list)> modifier) {
     TextsList textsList = getTextsList();
     modifier(&textsList);
     KConfigGroup generalGroup(this, QStringLiteral("General"));

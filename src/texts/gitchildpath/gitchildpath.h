@@ -12,7 +12,7 @@ class GitChildPath : public QObject, public TextInterface {
     Q_INTERFACES(TextInterface);
 
 public:
-    coloredText getText() {
+    coloredText getText() override {
         QString output = run("git", { "rev-parse", "--show-prefix" }).replace("\n", ""), childPath = "";
         if (output.length() != 0) {
             output.chop(1);

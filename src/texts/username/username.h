@@ -11,7 +11,7 @@ class Username : public QObject, public TextInterface {
     Q_INTERFACES(TextInterface);
 
 public:
-    coloredText getText() {
+    coloredText getText() override {
         return { QDir::home().dirName().trimmed(), USERNAME };
     };
 };

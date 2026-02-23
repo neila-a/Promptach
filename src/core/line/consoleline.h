@@ -8,11 +8,11 @@
 class ConsoleLine : public QList<ConsoleSide> {
 public:
     ConsoleLine();
-    const void write(QTextStream* stream) const;
+    void write(QTextStream* stream) const;
 
 private:
-    const unsigned short space() const;
-    const unsigned short consoleWidth() const;
+    unsigned short space() const;
+    unsigned short consoleWidth() const;
 };
 
 #endif // CONSOLELINE_H
