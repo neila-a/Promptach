@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 
 project(PromptachCommandLineParser LANGUAGES CXX)
 
-add_library(PromptachCommandLineParser STATIC
+add_library(PromptachCommandLineParser SHARED
   PromptachCommandLineParser_global.h
   promptachcommandlineparser.cpp
   promptachcommandlineparser.h

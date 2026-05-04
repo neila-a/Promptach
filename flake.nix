@@ -1,88 +1,84 @@
 {
-  description = "A pluggable, highly configurable prompt generator.";
-  inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    systems.url = "github:nix-systems/x86_64-linux";
-  };
-  outputs =
-    {
-      flake-utils,
-      self,
-      systems,
-      nixpkgs,
-    }:
-    let
-      system = "x86_64-linux";
-      pkgs = import nixpkgs {
-        inherit system;
-      };
-      commonInputs = {
-        nativeBuildInputs = with pkgs; [
-          kdePackages.wrapQtAppsHook
-          cmake
-          ninja
-          gettext
-        ];
-        buildInputs =
-          let
-            normalPackages = with pkgs; [
-              glfw
-              glm
-              libGL
-              libGLU
-            ];
-            kdePackages = with pkgs.kdePackages; [
-              kconfig
-              qtbase
-              qttools
-            ];
-          in
-          normalPackages ++ kdePackages;
-      };
-    in
-    rec {
-      packages."${system}".default =
-        let
-          fs = pkgs.lib.fileset;
-          sourceFiles = fs.difference (fs.gitTracked ./.) (
-            fs.unions [
-              .github/.
-              .gitignore/.
-              README.md/.
-              LICENSE.md/.
-            ]
-          );
-        in
+    description = "A pluggable, highly configurable prompt generator.";
 
-        pkgs.stdenv.mkDerivation {
-          pname = "promptach";
-          version = "0.4.0";
-
-          inherit (commonInputs) nativeBuildInputs buildInputs;
-
-          src = fs.toSource {
-            root = ./.;
-            fileset = sourceFiles;
-          };
-
-          patchPhase = ''
-            lrelease ./src/settings/PromptachSettings_zh_CN.ts -qm ./src/settings/PromptachSettings_zh_CN.qm
-          '';
-
-          installPhase = ''
-            ninja install
-            cp -r install/* $out/
-          '';
-
-          meta = {
-            homepage = "https://github.com/neila-a/Promptach";
-            license = pkgs.lib.licenses.gpl3Plus;
-            platforms = pkgs.lib.platforms.linux;
-            mainProgram = "Promptach";
-          };
-        };
-      devShells."${system}".default = pkgs.mkShell {
-        inherit (commonInputs) nativeBuildInputs buildInputs;
-      };
+    inputs = {
+        nixpkgs.url = "git+https://mirror.nju.edu.cn/git/nixpkgs.git?ref=nixpkgs-unstable&shallow=1";
+        flake-utils.url = "https://proxy.gitwarp.top/https://github.com/numtide/flake-utils/archive/refs/heads/master.zip";
     };
+
+    outputs =
+        {
+            self,
+            nixpkgs,
+            flake-utils,
+        }:
+        flake-utils.lib.eachDefaultSystem (
+            system:
+            let
+                name = "promptach";
+                version = "0.4.0";
+                homepage = "https://github.com/neila-a/${name}";
+                pkgs = import nixpkgs {
+                    inherit system;
+                };
+                nativeBuildInputs = with pkgs; [
+                    cmake
+                    ninja
+                    kdePackages.wrapQtAppsHook
+                ];
+
+                buildInputs = with pkgs.kdePackages; [
+                    qtbase
+                    kconfig
+                    qttools
+                ];
+            in
+            {
+                packages = rec {
+                    promptach = pkgs.stdenv.mkDerivation {
+                        pname = name;
+                        version = version;
+                        src = ./.;
+
+                        nativeBuildInputs = nativeBuildInputs;
+                        buildInputs = buildInputs;
+
+                        cmakeFlags = [
+                            "-DCMAKE_INSTALL_PREFIX=${placeholder "out"}"
+                        ];
+
+                        prePatch = ''
+                            lrelease ./src/settings/PromptachSettings_zh_CN.ts -qm ./src/settings/PromptachSettings_zh_CN.qm
+                        '';
+
+                        installPhase = ''
+                            runHook preInstall
+                            ninja install
+                            runHook postInstall
+                        '';
+
+                        meta = {
+                            homepage = homepage;
+                            license = pkgs.lib.licenses.gpl3Plus;
+                            platforms = pkgs.lib.platforms.linux;
+                            mainProgram = "${name}_app";
+                        };
+                    };
+                    default = promptach;
+                };
+
+                devShells.default = pkgs.mkShell {
+                    packages = with pkgs; [
+                        cmake
+                        ninja
+                        kdePackages.wrapQtAppsHook
+                        kdePackages.qtbase
+                        kdePackages.kconfig
+                        kdePackages.qttools
+                    ];
+
+                    inputsFrom = [ self.packages.${system}.default ];
+                };
+            }
+        );
 }

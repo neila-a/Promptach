@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 
 project(PromptachTextsCommon LANGUAGES CXX)
 
-add_library(PromptachTextsCommon STATIC
+add_library(PromptachTextsCommon SHARED
     utils.h
     isInGit.cpp
     run.cpp

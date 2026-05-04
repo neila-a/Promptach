@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 
 project(PromptachSettingsBackend LANGUAGES CXX)
 
-add_library(PromptachSettingsBackend STATIC
+add_library(PromptachSettingsBackend SHARED
   PromptachSettingsBackend_global.h
   settings.cpp
   settings.h

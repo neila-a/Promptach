@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 
 project(PromptachCore LANGUAGES CXX)
 
-add_library(PromptachCore STATIC
+add_library(PromptachCore SHARED
   write.h write.cpp
   textinterface.h textloader.h
 
