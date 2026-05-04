@@ -12,7 +12,7 @@ public:
 };
 
 QT_BEGIN_NAMESPACE
-#define TextInterface_iid "vip.neila.promptach.TextInterface"
+#define TextInterface_iid "top.neila.promptach.TextInterface"
 Q_DECLARE_INTERFACE(TextInterface, TextInterface_iid)
 QT_END_NAMESPACE
 
