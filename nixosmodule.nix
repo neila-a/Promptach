@@ -1,6 +1,7 @@
 {
     config,
     lib,
+    pkgs,
     ...
 }:
 with lib;
@@ -12,7 +13,7 @@ in
         enable = mkEnableOption "the promptach program";
         package = mkOption {
             type = types.package;
-            default = import ./package.nix;
+            default = import ./package.nix pkgs;
             description = "promptach package to use.";
         };
     };
