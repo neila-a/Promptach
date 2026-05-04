@@ -13,7 +13,6 @@ project(${GLOBAL_PROJECT_NAME}
     HOMEPAGE_URL "https://github.com/neila-a/Promptach"
 )
 
-
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -36,7 +35,7 @@ set(COMMANDLINEPARSER_HEADERS "commandlineparser")
 
 add_subdirectory(src)
 
-install(TARGETS Promptach PromptachSettings PromptachSettingsBackend PromptachCommandLineParser
+install(TARGETS Promptach PromptachSettings PromptachSettingsBackend PromptachCommandLineParser PromptachCore
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
