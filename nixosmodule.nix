@@ -20,7 +20,7 @@ in
 
     config = mkIf cfg.enable {
         environment.variables = {
-            PROMPT_COMMAND = "${cfg.package}/bin/Promptach";
+            PROMPT_COMMAND = "export PS1='> '; ${cfg.package}/bin/Promptach";
         };
     };
 }
