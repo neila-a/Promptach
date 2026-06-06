@@ -16,11 +16,16 @@ in
             default = import ./package.nix pkgs;
             description = "promptach package to use.";
         };
+        linestart = mkOption {
+            type = types.str;
+            default = "> ";
+            description = "start character at new line.";
+        };
     };
 
     config = mkIf cfg.enable {
         environment.variables = {
-            PROMPT_COMMAND = "export PS1='> '; ${cfg.package}/bin/Promptach";
+            PROMPT_COMMAND = "export PS1='${cfg.linestart}'; ${cfg.package}/bin/Promptach";
         };
     };
 }
