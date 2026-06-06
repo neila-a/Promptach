@@ -1,12 +1,12 @@
 # Promptach
 
-[English](../README.md) | 中文普通话大陆简体
+[English](/docs/en_US/README.md) | 中文普通话大陆简体
 
 一个插件化的、高度可配置的prompt生成器。
 
 ## 效果
 
-![效果图](./assets/effect_drawing.png)
+![效果图](/docs/assets/effect_drawing.png)
 
 ## 功能
 
