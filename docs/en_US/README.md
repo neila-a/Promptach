@@ -87,6 +87,34 @@ https://promptach.cachix.org/#pull
 
 ## Usage
 
+### NixOS
+
+Install in `flake.nix`:
+
+```nix
+{
+    inputs =  {
+        promptach.url = "url:url/to/promptach";
+    };
+}
+```
+
+Then, use in `modules`:
+
+```nix
+{
+    imports = [
+        inputs.promptach.nixosModules.promptach
+    ];
+
+    programs = {
+        promptach.enable = true;
+    };
+}
+```
+
+### Other operating systems
+
 In the shell, set the environment variable `PROMPT_COMMAND` (not `PS1`) to `Promptach`.  
 Additionally, it will not overwrite `PS1`, which needs to be set manually. It is recommended to set PS1 to `> `.
 

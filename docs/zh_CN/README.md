@@ -83,12 +83,40 @@ nix build
 
 ## 从cachix安装
 
-https://promptach.cachix.org/#pull
+<https://promptach.cachix.org/#pull>
 
 ## 用法
 
+### NixOS
+
+在`flake.nix`中安装：
+
+```nix
+{
+    inputs =  {
+        promptach.url = "url:url/to/promptach";
+    };
+}
+```
+
+而后，在`modules`中使用：
+
+```nix
+{
+    imports = [
+        inputs.promptach.nixosModules.promptach
+    ];
+
+    programs = {
+        promptach.enable = true;
+    };
+}
+```
+
+### 其他操作系统
+
 在shell中，将环境变量`PROMPT_COMMAND`（不是`PS1`）设置为`Promptach`。  
-此外，它不会覆盖需要手动设置的`PS1`。建议将PS1设置为`> `。
+此外，它不会覆盖需要手动设置的`PS1`。建议将PS1设置为`>`。
 
 ## 已知问题
 
