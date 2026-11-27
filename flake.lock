@@ -5,22 +5,22 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1731533236,
-        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "lastModified": 1794427683,
+        "narHash": "sha256-o7ey9gEilsxaifqJWnBDlYSKbNWYQYtKwDyXeZU2kaU=",
         "type": "tarball",
-        "url": "https://proxy.gitwarp.top/https://github.com/numtide/flake-utils/archive/refs/heads/master.zip"
+        "url": "https://gh-proxy.org/https://github.com/numtide/flake-utils/archive/refs/heads/master.zip"
       },
       "original": {
         "type": "tarball",
-        "url": "https://proxy.gitwarp.top/https://github.com/numtide/flake-utils/archive/refs/heads/master.zip"
+        "url": "https://gh-proxy.org/https://github.com/numtide/flake-utils/archive/refs/heads/master.zip"
       }
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1777641297,
-        "narHash": "sha256-WNGcmeOZ8Tr9dq6ztCspYbzWFswr2mPebM9LpsfGxPk=",
+        "lastModified": 1795371335,
+        "narHash": "sha256-oa2P5WZer1A4wuhatl92JyHHEjrrOdIyuvTuI5LUi9Q=",
         "ref": "nixpkgs-unstable",
-        "rev": "c6d65881c5624c9cae5ea6cedef24699b0c0a4c0",
+        "rev": "619c39f6eac5d1ed6b8f073a9414baf7034b2356",
         "shallow": true,
         "type": "git",
         "url": "https://mirror.nju.edu.cn/git/nixpkgs.git"
@@ -40,11 +40,11 @@
     },
     "systems": {
       "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "lastModified": 1791244623,
+        "narHash": "sha256-uuanbkFk8a313Zfrxdcz8Us/yQtaxNnKJtX8v0ZPpd8=",
         "owner": "nix-systems",
         "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "rev": "d36eeed142f88b5a636f2e3856a53c61654cf29b",
         "type": "github"
       },
       "original": {

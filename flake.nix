@@ -3,7 +3,7 @@
 
     inputs = {
         nixpkgs.url = "git+https://mirror.nju.edu.cn/git/nixpkgs.git?ref=nixpkgs-unstable&shallow=1";
-        flake-utils.url = "https://proxy.gitwarp.top/https://github.com/numtide/flake-utils/archive/refs/heads/master.zip";
+        flake-utils.url = "https://gh-proxy.org/https://github.com/numtide/flake-utils/archive/refs/heads/master.zip";
     };
 
     outputs =
